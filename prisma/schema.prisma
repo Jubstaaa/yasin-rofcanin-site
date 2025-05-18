@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model Social {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  icon String
+  link String
+
+  @@map("socials")
+}
+
+model Media {
+  id                 String               @id @default(auto()) @map("_id") @db.ObjectId
+  filename           String
+  mimeType           String
+  alt                String?
+  Blog               Blog[]
+  Video              Video[]
+  User               User[]
+  SliderImages       SliderImages[]
+  FutureOfWorkImages FutureOfWorkImages[]
+
+  @@map("media")
+}
+
+model User {
+  id                      String    @id @default(auto()) @map("_id") @db.ObjectId
+  version                 Int       @default(0) @map("__v")
+  firstName               String
+  lastName                String
+  titles                  String[]
+  location                String?
+  email                   String    @unique
+  bio                     String?
+  salt                    String
+  hash                    String
+  loginAttempts           Int       @default(0)
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  lockUntil               DateTime?
+  resetPasswordExpiration DateTime?
+  resetPasswordToken      String?
+  mediaId                 String?   @db.ObjectId
+  media                   Media?    @relation(fields: [mediaId], references: [id])
+
+  @@map("users")
+}
+
+model Teaching {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  level String
+  icon  String
+
+  @@map("teachings")
+}
+
+model Visiting {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  location    String
+  description String
+  link        String
+
+  @@map("visitings")
+}
+
+model SliderImages {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  mediaId String @db.ObjectId
+  media   Media  @relation(fields: [mediaId], references: [id])
+
+  @@map("sliderImages")
+}
+
+model FutureOfWorkImages {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  mediaId String @db.ObjectId
+  media   Media  @relation(fields: [mediaId], references: [id])
+
+  @@map("futureOfWorkImages")
+}
+
+model Video {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  description Json
+  link        String?
+  youtubeId   String?
+  mediaId     String? @db.ObjectId
+  media       Media?  @relation(fields: [mediaId], references: [id])
+
+  @@map("videos")
+}
+
+model KeynoteTalk {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  location    String
+  date        DateTime?
+  description String
+  link        String
+
+  @@map("keynoteTalks")
+}
+
+model Blog {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  date        DateTime?
+  link        String
+  authors     String[]
+  publisher   String
+  mediaId     String    @db.ObjectId
+  media       Media     @relation(fields: [mediaId], references: [id])
+
+  @@map("blogs")
+}
+
+model Publication {
+  id                    String              @id @default(auto()) @map("_id") @db.ObjectId
+  name                  String
+  description           String?
+  date                  DateTime?
+  link                  String
+  authors               String[]
+  publisher             String
+  publicationCategoryId String              @map("publicationCategoryId") @db.ObjectId
+  publicationCategory   PublicationCategory @relation(fields: [publicationCategoryId], references: [id])
+
+  @@index([publicationCategoryId])
+  @@map("publications")
+}
+
+model PublicationCategory {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  publication Publication[]
+
+  @@map("publicationCategories")
+}
