@@ -29,7 +29,7 @@ async function Footer() {
   });
 
   return (
-    <div className="w-full flex items-center justify-center bg-white p-14 pt-24">
+    <footer className="w-full flex items-center justify-center border-t border-gray-100 shadow-sm bg-white p-12 pt-12 mt-12">
       <div className="grid grid-cols-4 container mx-auto gap-10">
         <div className="flex flex-col gap-6">
           <Image
@@ -97,7 +97,7 @@ async function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 

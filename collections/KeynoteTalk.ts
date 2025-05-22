@@ -32,7 +32,7 @@ export const KeynoteTalk: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/" }]);
+        await revalidatePaths([{ path: "/keynote-talks" }]);
       },
     ],
   },

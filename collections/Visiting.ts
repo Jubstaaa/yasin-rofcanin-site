@@ -28,7 +28,7 @@ export const Visiting: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/" }]);
+        await revalidatePaths([{ path: "/about-me" }]);
       },
     ],
   },

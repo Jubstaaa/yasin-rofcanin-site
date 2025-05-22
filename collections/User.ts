@@ -75,7 +75,11 @@ export const User: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/" }, { path: "/bio" }]);
+        await revalidatePaths([
+          { path: "/", type: "layout" },
+          { path: "/about-me" },
+          { path: "/contact" },
+        ]);
       },
     ],
   },

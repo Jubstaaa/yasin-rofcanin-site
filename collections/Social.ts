@@ -23,7 +23,11 @@ export const Social: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/", type: "layout" }]);
+        await revalidatePaths([
+          { path: "/", type: "layout" },
+          { path: "/contact" },
+          { path: "/about-me" },
+        ]);
       },
     ],
   },

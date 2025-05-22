@@ -43,7 +43,11 @@ export const Blog: CollectionConfig = {
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/" }, { path: "/blog" }]);
+        await revalidatePaths([
+          { path: "/" },
+          { path: "/", type: "layout" },
+          { path: "/publications" },
+        ]);
       },
     ],
   },

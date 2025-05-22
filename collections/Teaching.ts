@@ -18,13 +18,13 @@ export const Teaching: CollectionConfig = {
       name: "icon",
       type: "text",
       required: true,
-    }
+    },
   ],
   hooks: {
     afterChange: [
       async () => {
-        await revalidatePaths([{ path: "/" }]);
+        await revalidatePaths([{ path: "/about-me" }]);
       },
     ],
   },
-}; 
+};

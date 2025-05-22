@@ -42,7 +42,6 @@ async function page() {
           titles: user?.titles,
         }}
       />
-      <Media />
       <Publications />
       <EditorialRoles />
       <FutureOfWork
@@ -51,6 +50,7 @@ async function page() {
           alt: item.media.alt,
         }))}
       />
+      <Media />
     </>
   );
 }
