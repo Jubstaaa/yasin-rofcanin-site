@@ -11,3 +11,4 @@ export const VideoService = prisma.video;
 export const FutureOfWorkImagesService = prisma.futureOfWorkImages;
 export const TeachingService = prisma.teaching;
 export const VisitingService = prisma.visiting;
+export const KeynoteTalkService = prisma.keynoteTalk;

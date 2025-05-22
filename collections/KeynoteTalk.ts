@@ -11,7 +11,7 @@ export const KeynoteTalk: CollectionConfig = {
       required: true,
     },
     {
-      name: "location", 
+      name: "location",
       type: "text",
       required: true,
     },
@@ -27,7 +27,6 @@ export const KeynoteTalk: CollectionConfig = {
     {
       name: "link",
       type: "text",
-      required: true,
     },
   ],
   hooks: {

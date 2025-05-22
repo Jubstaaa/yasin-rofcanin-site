@@ -8,6 +8,7 @@ import {
 import Media from "./components/landing/Media";
 import Publications from "./components/landing/Publications";
 import FutureOfWork from "./components/landing/FutureOfWork";
+import EditorialRoles from "./components/landing/EditoralRoles";
 
 async function page() {
   const sliderImages = await SliderImageService.findMany({
@@ -43,6 +44,7 @@ async function page() {
       />
       <Media />
       <Publications />
+      <EditorialRoles />
       <FutureOfWork
         images={futureOfWorkImages.map((item) => ({
           src: item.media.url,

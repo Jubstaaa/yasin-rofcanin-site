@@ -43,6 +43,7 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
             src={image.src}
             alt={image.alt}
             className="ml-auto w-3/5 h-full object-cover"
+            priority={i === 0}
           />
         </SwiperSlide>
       ))}
