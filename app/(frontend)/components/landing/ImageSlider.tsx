@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
+import { motion } from "framer-motion";
 
 interface ImageSliderProps {
   images: {
@@ -46,21 +47,54 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
         </SwiperSlide>
       ))}
       {user && (
-        <div className="flex flex-col items-start justify-center gap-4 absolute left-0 top-1/2 -translate-y-1/2 w-2/5 h-4/5 bg-white z-10 after:content-[''] after:absolute after:left-full after:top-0 after:w-20 after:h-full after:bg-white after:opacity-70">
-          <h1 className="text-6xl pl-20">
+        <motion.div
+          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-1/2 -translate-y-1/2 w-2/5 h-4/5 bg-white z-10 after:content-[''] after:absolute after:left-full after:top-0 after:w-20 after:h-full after:bg-white after:opacity-70"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.15 } },
+          }}
+        >
+          <motion.h1
+            className="text-6xl pl-20"
+            initial={{ opacity: 0, y: -40, x: -40 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             {user.firstName}
             <br />
             {user.lastName}
-          </h1>
-          <hr className="w-32 ml-10 text-hover" />
+          </motion.h1>
+          <motion.hr
+            className="w-32 ml-10 text-hover"
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          />
           {user.titles && (
-            <div className="pl-20">
+            <motion.div
+              className="pl-20"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               {user.titles.map((title, i) => (
-                <p className="text-lg text-secondary leading-relaxed" key={i}>
+                <motion.p
+                  className="text-lg text-secondary leading-relaxed"
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.2 + i * 0.1,
+                    ease: "easeOut",
+                  }}
+                >
                   {title}
-                </p>
+                </motion.p>
               ))}
-            </div>
+            </motion.div>
           )}
           <div className="absolute bottom-8 left-0 flex gap-2 pl-20 ">
             {images.map((_, idx) => (
@@ -72,7 +106,7 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
     </Swiper>
   );

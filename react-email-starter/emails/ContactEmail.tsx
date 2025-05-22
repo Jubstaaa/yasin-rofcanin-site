@@ -13,13 +13,15 @@ import {
 type ContactEmailProps = {
   name: string;
   email: string;
-  description: string;
+  subject: string;
+  message: string;
 };
 
 export default function ContactEmail({
   name,
   email,
-  description,
+  subject,
+  message,
 }: ContactEmailProps) {
   return (
     <Html>
@@ -49,7 +51,10 @@ export default function ContactEmail({
             <strong>Email:</strong> {email}
           </Text>
           <Text>
-            <strong>Description:</strong> {description}
+            <strong>Subject:</strong> {subject}
+          </Text>
+          <Text>
+            <strong>Message:</strong> {message}
           </Text>
         </Container>
       </Body>

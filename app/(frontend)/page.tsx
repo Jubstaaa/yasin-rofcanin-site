@@ -1,8 +1,13 @@
 import React from "react";
 import ImageSlider from "./components/landing/ImageSlider";
-import { SliderImageService, UserService } from "@/lib/services";
+import {
+  FutureOfWorkImagesService,
+  SliderImageService,
+  UserService,
+} from "@/lib/services";
 import Media from "./components/landing/Media";
 import Publications from "./components/landing/Publications";
+import FutureOfWork from "./components/landing/FutureOfWork";
 
 async function page() {
   const sliderImages = await SliderImageService.findMany({
@@ -14,6 +19,12 @@ async function page() {
   const user = await UserService.findUnique({
     where: {
       email: "y.rofcanin@bath.ac.uk",
+    },
+  });
+
+  const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
+    select: {
+      media: true,
     },
   });
 
@@ -32,6 +43,12 @@ async function page() {
       />
       <Media />
       <Publications />
+      <FutureOfWork
+        images={futureOfWorkImages.map((item) => ({
+          src: item.media.url,
+          alt: item.media.alt,
+        }))}
+      />
     </>
   );
 }

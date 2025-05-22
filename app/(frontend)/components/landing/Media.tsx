@@ -3,6 +3,7 @@ import { VideoService } from "@/lib/services";
 import Image from "next/image";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import RichText from "../ui/RichText";
+import Link from "next/link";
 
 async function Media() {
   const videos = await VideoService.findMany({
@@ -31,13 +32,15 @@ async function Media() {
                 />
               )}
               {item.link && item.media && (
-                <Image
-                  src={item.media.url}
-                  alt={item.media.alt}
-                  width={600}
-                  height={600}
-                  className="aspect-video object-cover"
-                />
+                <Link href={item.link} target="_blank">
+                  <Image
+                    src={item.media.url}
+                    alt={item.media.alt}
+                    width={600}
+                    height={600}
+                    className="aspect-video object-cover"
+                  />
+                </Link>
               )}
               <RichText
                 className="text-white prose-a:text-hover"

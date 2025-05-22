@@ -7,7 +7,7 @@ export const FutureOfWorkImages: CollectionConfig = {
   fields: [
     {
       name: "mediaId",
-      type: "relationship",
+      type: "upload",
       relationTo: "media",
       required: true,
     },

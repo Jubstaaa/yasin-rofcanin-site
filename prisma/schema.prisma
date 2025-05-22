@@ -140,10 +140,10 @@ model Publication {
 }
 
 model PublicationCategory {
-  id          String        @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  description String?
-  publication Publication[]
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  description  String?
+  publications Publication[]
 
   @@map("publicationCategories")
 }

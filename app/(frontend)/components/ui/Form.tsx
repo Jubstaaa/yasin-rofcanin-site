@@ -17,7 +17,7 @@ function Form({ fields = [], action }: FormProps) {
 
   return (
     <form
-      className={cn("max-w-xl w-full grid grid-cols-2 gap-4 relative z-10")}
+      className={cn("max-w-xl w-full flex flex-col gap-4 relative z-10")}
       onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
@@ -26,7 +26,7 @@ function Form({ fields = [], action }: FormProps) {
     >
       <AnimatePresence>
         <motion.div
-          className="w-full col-span-full grid grid-cols-2 gap-4 overflow-hidden"
+          className="w-full flex flex-col gap-4 overflow-hidden"
           initial={{ height: "auto" }}
           animate={{ height: state.ok ? 0 : "auto" }}
           transition={{ duration: 0.3 }}

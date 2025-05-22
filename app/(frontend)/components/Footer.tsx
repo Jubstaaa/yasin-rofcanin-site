@@ -29,7 +29,7 @@ async function Footer() {
   });
 
   return (
-    <div className="w-full flex items-center justify-center bg-white p-14">
+    <div className="w-full flex items-center justify-center bg-white p-14 pt-24">
       <div className="grid grid-cols-4 container mx-auto gap-10">
         <div className="flex flex-col gap-6">
           <Image

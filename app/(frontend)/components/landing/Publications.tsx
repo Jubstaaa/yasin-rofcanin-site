@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { Icon } from "@iconify/react";
 import Button from "../ui/Button";
+import AnimatedText from "../ui/AnimatedText";
 
 async function Publications() {
   const publications = await PublicationService.findMany({
@@ -17,9 +18,10 @@ async function Publications() {
 
   return (
     <div className="flex flex-col gap-10 items-center">
-      <span className="text-[200px] text-[#f1f1f1] font-extrabold text-center -mb-20">
-        PUBLICATIONS
-      </span>
+      <AnimatedText
+        text="PUBLICATIONS"
+        className="text-[200px] text-[#f1f1f1] font-extrabold text-center -mb-20"
+      />
       <div className="container mx-auto grid grid-cols-3 gap-10">
         {publications.map((item) => (
           <Link
