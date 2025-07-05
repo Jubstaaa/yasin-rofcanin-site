@@ -15,6 +15,7 @@ import { Video } from "./collections/Video";
 import { KeynoteTalk } from "./collections/KeynoteTalk";
 import { Publication } from "./collections/Publication";
 import { PublicationCategory } from "./collections/PublicationCategory";
+import { InviteImages } from "./collections/InviteImages";
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -28,6 +29,7 @@ export default buildConfig({
     Visiting,
     SliderImages,
     FutureOfWorkImages,
+    InviteImages,
     Video,
     KeynoteTalk,
     Publication,

@@ -26,6 +26,7 @@ model Media {
   User               User[]
   SliderImages       SliderImages[]
   FutureOfWorkImages FutureOfWorkImages[]
+  InviteImages       InviteImages[]
 
   @@map("media")
 }
@@ -86,6 +87,14 @@ model FutureOfWorkImages {
   media   Media  @relation(fields: [mediaId], references: [id])
 
   @@map("futureOfWorkImages")
+}
+
+model InviteImages {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  mediaId String @db.ObjectId
+  media   Media  @relation(fields: [mediaId], references: [id])
+
+  @@map("inviteImages")
 }
 
 model Video {

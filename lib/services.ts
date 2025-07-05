@@ -9,6 +9,7 @@ export const MediaService = prisma.media;
 export const SliderImageService = prisma.sliderImages;
 export const VideoService = prisma.video;
 export const FutureOfWorkImagesService = prisma.futureOfWorkImages;
+export const InviteImagesService = prisma.inviteImages;
 export const TeachingService = prisma.teaching;
 export const VisitingService = prisma.visiting;
 export const KeynoteTalkService = prisma.keynoteTalk;

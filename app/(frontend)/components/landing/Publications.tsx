@@ -17,7 +17,7 @@ async function Publications() {
   });
 
   return (
-    <div className="flex flex-col gap-10 items-center">
+    <div className="flex flex-col gap-10 items-center pt-24">
       <AnimatedText
         text="PUBLICATIONS"
         className="text-[200px] text-[#f1f1f1] font-extrabold text-center -mb-20"
