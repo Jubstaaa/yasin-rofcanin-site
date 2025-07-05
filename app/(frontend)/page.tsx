@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import React from "react";
 import ImageSlider from "./components/landing/ImageSlider";
 import {
-  // FutureOfWorkImagesService,
   InviteImagesService,
   SliderImageService,
   UserService,
@@ -12,6 +11,7 @@ import Publications from "./components/landing/Publications";
 import EditorialRoles from "./components/landing/EditoralRoles";
 import About from "./components/landing/About";
 import Invite from "./components/landing/Invite";
+import Video from "./components/landing/Video";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -58,12 +58,6 @@ async function page() {
     },
   });
 
-  // const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
-  //   select: {
-  //     media: true,
-  //   },
-  // });
-
   const inviteImages = await InviteImagesService.findMany({
     select: {
       media: true,
@@ -83,6 +77,7 @@ async function page() {
           titles: user?.titles,
         }}
       />
+      <Video />
       <About name={user?.firstName ?? ""} />
       <Publications />
       <EditorialRoles />
@@ -93,12 +88,7 @@ async function page() {
         }))}
         href="/keynote-talks"
       />
-      {/* <FutureOfWork
-        images={futureOfWorkImages.map((item) => ({
-          src: item.media.url,
-          alt: item.media.alt,
-        }))}
-      /> */}
+
       <Media />
     </>
   );

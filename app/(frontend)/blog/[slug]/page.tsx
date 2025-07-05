@@ -140,18 +140,6 @@ async function BlogDetailPage({
             </div>
           )}
 
-          {/* Debug: Content Structure */}
-          {process.env.NODE_ENV === "development" && blog.content && (
-            <details className="mt-8 p-4 bg-gray-100 rounded-lg">
-              <summary className="cursor-pointer font-semibold">
-                Debug: Content Structure
-              </summary>
-              <pre className="mt-2 text-xs overflow-auto">
-                {JSON.stringify(blog.content, null, 2)}
-              </pre>
-            </details>
-          )}
-
           {/* Back to Blog */}
           <div className="mt-16 pt-8 border-t border-gray-200">
             <Link
