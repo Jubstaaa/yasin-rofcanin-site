@@ -1,14 +1,50 @@
 import React from "react";
+import type { Metadata } from "next";
 import { BlogService } from "@/lib/services";
 import PageHero from "../components/ui/PageHero";
-import Button from "../components/ui/Button";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Explore Yasin Rofcanin's blog posts and external publications. Insights on organisational behaviour, flexible work practices, and academic research.",
+  keywords: [
+    "Yasin Rofcanin Blog",
+    "Organisational Behaviour Blog",
+    "Academic Blog",
+    "Research Publications",
+    "Flexible Work Blog",
+    "Work-Family Balance",
+    "Academic Insights",
+  ],
+  openGraph: {
+    title: "Blog - Yasin Rofcanin",
+    description:
+      "Explore Yasin Rofcanin's blog posts and external publications on organisational behaviour and research.",
+    url: "https://yasinrofcanin.com/blog",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Blog - Yasin Rofcanin",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "/blog",
+  },
+};
 
 async function BlogPage() {
   const blogs = await BlogService.findMany({
     include: { media: true },
   });
+
+  const externalBlogs = blogs.filter((blog) => blog.type === "external");
+  const personalBlogs = blogs.filter((blog) => blog.type === "personal");
 
   return (
     <>
@@ -17,50 +53,166 @@ async function BlogPage() {
         description="Insights, stories, and updates from my professional journey."
       />
 
-      <div className="container mx-auto py-16 flex flex-col gap-12">
-        {blogs.length === 0 ? (
-          <div className="text-gray-400 italic text-center">
-            No blog posts found.
-          </div>
-        ) : (
-          blogs.map((blog) => (
-            <div
-              key={blog.id}
-              className="bg-gray-50 rounded-xl p-12 flex flex-col md:flex-row items-center md:items-start gap-8 shadow-none"
-            >
-              {/* Sol: İçerik */}
-              <div className="flex-1 flex flex-col gap-6">
-                <h2 className="text-2xl font-bold">{blog.name}</h2>
-                <p className="text-lg text-secondary">{blog.description}</p>
-                <div className="font-bold text-lg">
-                  {blog.authors?.join(", ")}
-                  {blog.publisher ? ` – ${blog.publisher}` : ""}
-                  {blog.date
-                    ? ` – ${new Date(blog.date).toLocaleString("en-US", {
-                        month: "long",
-                        year: "numeric",
-                      })}`
-                    : ""}
-                </div>
-                <Button href={blog.link} target="_blank">
-                  READ MORE <Icon icon="mdi:arrow-right" className="w-5 h-5" />
-                </Button>
-              </div>
-              {/* Sağ: Görsel (varsa) */}
-              {blog.media?.url && (
-                <div className="w-64 h-64 flex-shrink-0 flex items-center justify-center">
-                  <Image
-                    src={blog.media.url}
-                    alt={blog.media.alt || blog.name}
-                    className="object-contain max-h-full max-w-full"
-                    width={256}
-                    height={256}
-                  />
-                </div>
-              )}
+      <div className="container mx-auto py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* External Publications Section - Left */}
+          <section>
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold mb-2">External Publications</h2>
+              <p className="text-gray-600">
+                Published articles and research in external platforms
+              </p>
             </div>
-          ))
-        )}
+
+            {externalBlogs.length === 0 ? (
+              <div className="text-gray-400 italic text-center py-12 bg-gray-50 rounded-lg">
+                <Icon
+                  icon="mdi:file-document-outline"
+                  className="w-12 h-12 mx-auto mb-4 opacity-50"
+                />
+                <p>No external publications found.</p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {externalBlogs.map((blog) => (
+                  <article
+                    key={blog.id}
+                    className="bg-white border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group"
+                  >
+                    {/* Blog Image */}
+                    {blog.media?.url && (
+                      <div className="mb-4 overflow-hidden rounded-lg">
+                        <Image
+                          src={blog.media.url}
+                          alt={blog.media.alt || blog.name}
+                          width={400}
+                          height={200}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
+
+                    {/* Content */}
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-bold line-clamp-2 group-hover:text-hover transition-colors">
+                        {blog.name}
+                      </h3>
+                      {blog.description && (
+                        <p className="text-sm text-gray-600 line-clamp-3">
+                          {blog.description}
+                        </p>
+                      )}
+                      <div className="text-xs text-gray-500 space-y-1">
+                        <div className="font-medium">
+                          {blog.authors?.join(", ")}
+                        </div>
+                        {blog.publisher && <div>{blog.publisher}</div>}
+                        {blog.date && (
+                          <div>
+                            {new Date(blog.date).toLocaleString("en-US", {
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </div>
+                        )}
+                      </div>
+                      {blog.link && (
+                        <Link
+                          href={blog.link}
+                          target="_blank"
+                          className="inline-flex items-center gap-2 text-hover font-semibold hover:underline text-sm mt-3 group/link"
+                        >
+                          READ MORE
+                          <Icon
+                            icon="mdi:arrow-right"
+                            className="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
+                          />
+                        </Link>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* Personal Blogs Section - Right */}
+          <section>
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold mb-2">Personal Blog</h2>
+              <p className="text-gray-600">
+                Personal insights and thoughts on my website
+              </p>
+            </div>
+
+            {personalBlogs.length === 0 ? (
+              <div className="text-gray-400 italic text-center py-12 bg-gray-50 rounded-lg">
+                <Icon
+                  icon="mdi:blog-outline"
+                  className="w-12 h-12 mx-auto mb-4 opacity-50"
+                />
+                <p>No personal blog posts found.</p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {personalBlogs.map((blog) => (
+                  <article
+                    key={blog.id}
+                    className="bg-white border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group"
+                  >
+                    {/* Blog Image */}
+                    {blog.media?.url && (
+                      <div className="mb-4 overflow-hidden rounded-lg">
+                        <Image
+                          src={blog.media.url}
+                          alt={blog.media.alt || blog.name}
+                          width={400}
+                          height={200}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
+
+                    {/* Content */}
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-bold line-clamp-2 group-hover:text-hover transition-colors">
+                        {blog.name}
+                      </h3>
+                      {blog.description && (
+                        <p className="text-sm text-gray-600 line-clamp-3">
+                          {blog.description}
+                        </p>
+                      )}
+                      <div className="text-xs text-gray-500 space-y-1">
+                        <div className="font-medium">
+                          {blog.authors?.join(", ")}
+                        </div>
+                        {blog.date && (
+                          <div>
+                            {new Date(blog.date).toLocaleString("en-US", {
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </div>
+                        )}
+                      </div>
+                      <Link
+                        href={`/blog/${blog.slug}`}
+                        className="inline-flex items-center gap-2 text-hover font-semibold hover:underline text-sm mt-3 group/link"
+                      >
+                        READ MORE
+                        <Icon
+                          icon="mdi:arrow-right"
+                          className="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
+                        />
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
       </div>
     </>
   );

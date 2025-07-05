@@ -18,10 +18,10 @@ async function Media() {
 
   return (
     <div className="bg-[url('/images/bg-media.jpg')] bg-fixed bg-center py-24 mt-24 -mb-12">
-      <div className="container mx-auto flex flex-col gap-10">
+      <div className="container mx-auto flex flex-col gap-10 px-4 md:px-0">
         <h2 className="text-4xl text-white text-center font-medium">Media</h2>
         <div className="w-[1px] h-40 bg-hover -mb-20 mx-auto"></div>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {videos.map((item) => (
             <div key={item.id} className="flex flex-col gap-5">
               {item.youtubeId && (
@@ -43,7 +43,7 @@ async function Media() {
                 </Link>
               )}
               <RichText
-                className="text-white prose-a:text-hover"
+                className="prose-p:!text-white prose-a:!text-hover"
                 data={item.description as unknown as SerializedEditorState}
               />
             </div>

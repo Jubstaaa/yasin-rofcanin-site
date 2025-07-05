@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import PageHero from "../components/ui/PageHero";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
@@ -8,6 +9,38 @@ import { UserService } from "@/lib/services";
 import Link from "next/link";
 import { SocialService } from "@/lib/services";
 import AnimatedText from "../components/ui/AnimatedText";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Yasin Rofcanin, Professor of Organisational Behaviour at University of Bath. Contact for research collaborations, speaking engagements, or academic inquiries.",
+  keywords: [
+    "Contact Yasin Rofcanin",
+    "University of Bath Contact",
+    "Academic Contact",
+    "Research Collaboration",
+    "Speaking Engagements",
+    "Organisational Behaviour Professor",
+    "Academic Inquiries",
+  ],
+  openGraph: {
+    title: "Contact - Yasin Rofcanin",
+    description:
+      "Get in touch with Yasin Rofcanin for research collaborations, speaking engagements, or academic inquiries.",
+    url: "https://yasinrofcanin.com/contact",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Contact - Yasin Rofcanin",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "/contact",
+  },
+};
 
 async function page() {
   const user = await UserService.findUnique({

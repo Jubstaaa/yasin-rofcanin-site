@@ -113,11 +113,14 @@ model KeynoteTalk {
 model Blog {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   name        String
+  slug        String?
   description String?
   date        DateTime?
-  link        String
+  type        String    @default("external")
+  link        String?
+  content     Json?
   authors     String[]
-  publisher   String
+  publisher   String?
   mediaId     String    @db.ObjectId
   media       Media     @relation(fields: [mediaId], references: [id])
 

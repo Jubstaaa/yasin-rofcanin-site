@@ -10,6 +10,26 @@ export const Blog: CollectionConfig = {
       required: true,
     },
     {
+      name: "slug",
+      type: "text",
+      admin: {
+        condition: (data) => data.type === "personal",
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (data?.type === "personal" && !value && data?.name) {
+              return data.name
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)/g, "");
+            }
+            return value;
+          },
+        ],
+      },
+    },
+    {
       name: "description",
       type: "text",
     },
@@ -18,9 +38,34 @@ export const Blog: CollectionConfig = {
       type: "date",
     },
     {
+      name: "type",
+      type: "select",
+      required: true,
+      options: [
+        {
+          label: "External Publication",
+          value: "external",
+        },
+        {
+          label: "Personal Blog",
+          value: "personal",
+        },
+      ],
+      defaultValue: "external",
+    },
+    {
       name: "link",
       type: "text",
-      required: true,
+      admin: {
+        condition: (data) => data.type === "external",
+      },
+    },
+    {
+      name: "content",
+      type: "richText",
+      admin: {
+        condition: (data) => data.type === "personal",
+      },
     },
     {
       name: "authors",
@@ -31,7 +76,9 @@ export const Blog: CollectionConfig = {
     {
       name: "publisher",
       type: "text",
-      required: true,
+      admin: {
+        condition: (data) => data.type === "external",
+      },
     },
     {
       name: "mediaId",
@@ -46,7 +93,7 @@ export const Blog: CollectionConfig = {
         await revalidatePaths([
           { path: "/" },
           { path: "/", type: "layout" },
-          { path: "/publications" },
+          { path: "/blog" },
         ]);
       },
     ],

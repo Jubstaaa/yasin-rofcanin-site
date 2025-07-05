@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import React from "react";
 import ImageSlider from "./components/landing/ImageSlider";
 import {
@@ -9,6 +10,38 @@ import Media from "./components/landing/Media";
 import Publications from "./components/landing/Publications";
 import FutureOfWork from "./components/landing/FutureOfWork";
 import EditorialRoles from "./components/landing/EditoralRoles";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Welcome to Yasin Rofcanin's academic website. Professor of Organisational Behaviour at University of Bath, researching flexible work practices, employee behaviours, and work-family enrichment.",
+  keywords: [
+    "Yasin Rofcanin",
+    "Home",
+    "Organisational Behaviour",
+    "University of Bath",
+    "Academic Research",
+    "Flexible Work",
+    "Work-Family Balance",
+  ],
+  openGraph: {
+    title: "Yasin Rofcanin - Professor of Organisational Behaviour",
+    description:
+      "Welcome to Yasin Rofcanin's academic website. Professor of Organisational Behaviour at University of Bath.",
+    url: "https://yasinrofcanin.com",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Yasin Rofcanin - Professor of Organisational Behaviour",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
 
 async function page() {
   const sliderImages = await SliderImageService.findMany({

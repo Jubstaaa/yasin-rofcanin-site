@@ -1,9 +1,43 @@
 import React from "react";
+import type { Metadata } from "next";
 import { PublicationCategoryService } from "@/lib/services";
 import Link from "next/link";
 import PageHero from "../components/ui/PageHero";
 import { Icon } from "@iconify/react";
 import Button from "../components/ui/Button";
+
+export const metadata: Metadata = {
+  title: "Publications",
+  description:
+    "Explore Yasin Rofcanin's academic publications and research papers in organisational behaviour, flexible work practices, and employee well-being.",
+  keywords: [
+    "Yasin Rofcanin Publications",
+    "Academic Papers",
+    "Research Publications",
+    "Organisational Behaviour Research",
+    "Flexible Work Practices",
+    "Employee Well-being",
+    "University of Bath Publications",
+    "Academic Journals",
+  ],
+  openGraph: {
+    title: "Publications - Yasin Rofcanin",
+    description:
+      "Explore Yasin Rofcanin's academic publications and research papers in organisational behaviour.",
+    url: "https://yasinrofcanin.com/publications",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Publications - Yasin Rofcanin",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "/publications",
+  },
+};
 
 async function PublicationsPage() {
   const categories = await PublicationCategoryService.findMany({

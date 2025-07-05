@@ -25,6 +25,7 @@ async function Footer() {
       id: true,
       name: true,
       link: true,
+      type: true,
     },
   });
 
@@ -88,8 +89,8 @@ async function Footer() {
               <Link
                 key={item.id}
                 className="hover:text-hover"
-                href={item.link}
-                target="_blank"
+                href={item.type === "personal" ? `/blog/${item.id}` : item.link || "#"}
+                target={item.type === "external" ? "_blank" : "_self"}
               >
                 {item.name}
               </Link>

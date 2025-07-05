@@ -14,3 +14,20 @@ body {
 a {
   @apply no-underline;
 }
+
+/* Rich Text Image Styles */
+.prose img {
+  @apply max-w-full h-auto rounded-lg shadow-md mx-auto my-6;
+}
+
+.prose figure {
+  @apply my-6;
+}
+
+.prose figure img {
+  @apply w-full h-auto;
+}
+
+.prose figure figcaption {
+  @apply text-center text-sm text-gray-600 mt-2;
+}
