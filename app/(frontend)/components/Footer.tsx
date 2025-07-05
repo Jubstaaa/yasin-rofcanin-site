@@ -89,7 +89,11 @@ async function Footer() {
               <Link
                 key={item.id}
                 className="hover:text-hover"
-                href={item.type === "personal" ? `/blog/${item.id}` : item.link || "#"}
+                href={
+                  item.type === "personal"
+                    ? `/blog/${item.id}`
+                    : item.link || "#"
+                }
                 target={item.type === "external" ? "_blank" : "_self"}
               >
                 {item.name}
