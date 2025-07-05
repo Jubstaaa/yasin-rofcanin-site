@@ -8,19 +8,16 @@ import Link from "next/link";
 import RichText from "../../components/ui/RichText";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
-interface BlogDetailPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-// Generate metadata for the blog post
 export async function generateMetadata({
   params,
-}: BlogDetailPageProps): Promise<Metadata> {
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
   const blog = await BlogService.findFirst({
     where: {
-      slug: params.slug,
+      slug: slug,
       type: "personal",
     },
     include: { media: true },
@@ -52,7 +49,7 @@ export async function generateMetadata({
     openGraph: {
       title: blog.name,
       description,
-      url: `https://yasinrofcanin.com/blog/${params.slug}`,
+      url: `https://yasinrofcanin.com/blog/${slug}`,
       type: "article",
       publishedTime: blog.date?.toISOString(),
       authors: blog.authors,
@@ -81,15 +78,21 @@ export async function generateMetadata({
       images: blog.media?.url ? [blog.media.url] : ["/images/og-image.jpg"],
     },
     alternates: {
-      canonical: `/blog/${params.slug}`,
+      canonical: `/blog/${slug}`,
     },
   };
 }
 
-async function BlogDetailPage({ params }: BlogDetailPageProps) {
+async function BlogDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
   const blog = await BlogService.findFirst({
     where: {
-      slug: params.slug,
+      slug: slug,
       type: "personal",
     },
     include: { media: true },

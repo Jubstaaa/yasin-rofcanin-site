@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 import ImageSlider from "./components/landing/ImageSlider";
 import {
-  FutureOfWorkImagesService,
+  // FutureOfWorkImagesService,
   InviteImagesService,
   SliderImageService,
   UserService,
@@ -58,11 +58,11 @@ async function page() {
     },
   });
 
-  const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
-    select: {
-      media: true,
-    },
-  });
+  // const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
+  //   select: {
+  //     media: true,
+  //   },
+  // });
 
   const inviteImages = await InviteImagesService.findMany({
     select: {
