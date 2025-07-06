@@ -26,6 +26,7 @@ async function Footer() {
       name: true,
       link: true,
       type: true,
+      slug: true,
     },
   });
 
@@ -102,7 +103,7 @@ async function Footer() {
                   className="hover:text-hover"
                   href={
                     item.type === "personal"
-                      ? `/blog/${item.id}`
+                      ? `/blog/${item.slug}`
                       : item.link || "#"
                   }
                   target={item.type === "external" ? "_blank" : "_self"}
