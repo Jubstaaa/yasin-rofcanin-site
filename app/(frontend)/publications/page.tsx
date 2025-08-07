@@ -75,9 +75,9 @@ async function PublicationsPage() {
                 category.publications.map((pub) => (
                   <div
                     key={pub.id}
-                    className="bg-white rounded-lg shadow-sm p-8 flex flex-col gap-2"
+                    className="bg-[#f7f7f7] p-10 flex flex-col gap-2"
                   >
-                    <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                    <span className="text-xs font-semibold text-zinc-600 uppercase tracking-wider mb-2">
                       {pub.date
                         ? new Date(pub.date).toLocaleDateString("en-US", {
                             year: "numeric",
@@ -86,11 +86,18 @@ async function PublicationsPage() {
                           })
                         : ""}
                     </span>
-                    <h3 className="text-xl font-bold mb-1">{pub.name}</h3>
+                    <Link href={pub.link} target="_blank">
+                      <h3 className="text-3xl font-medium mb-2 hover:text-hover transition-all duration-300">
+                        {pub.name}
+                      </h3>
+                    </Link>
+                    <p className="text-lg text-gray-500 mb-4">
+                      {pub.description}
+                    </p>
                     <Link
                       href={pub.link}
                       target="_blank"
-                      className="text-hover font-semibold flex items-center gap-2 hover:underline"
+                      className="text-hover text-sm font-bold flex items-center gap-2 hover:text-black w-fit transition-all duration-300"
                     >
                       READ MORE{" "}
                       <Icon icon="mdi:arrow-right" className="w-4 h-4" />

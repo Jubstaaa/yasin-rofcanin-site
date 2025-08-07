@@ -1,9 +1,10 @@
 import React from "react";
 import { VideoService } from "@/lib/services";
-import Image from "next/image";
-import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import MediaSlider from "./MediaSlider";
 import RichText from "../ui/RichText";
 import Link from "next/link";
+import Image from "next/image";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 async function Media() {
   const videos = await VideoService.findMany({
@@ -17,12 +18,12 @@ async function Media() {
   });
 
   return (
-    <div className="bg-[url('/images/bg-media.jpg')] bg-fixed bg-center py-24 mt-24 -mb-12">
+    <div className="bg-[url('/images/bg-media.jpg')] bg-fixed bg-center pt-24 pb-12 mt-24 -mb-12">
       <div className="container mx-auto flex flex-col gap-10 px-4 md:px-0">
         <h2 className="text-4xl text-white text-center font-medium">Media</h2>
-        <div className="w-[1px] h-40 bg-hover -mb-20 mx-auto"></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {videos.map((item) => (
+        <div className="w-[1px] h-20 bg-hover -mb-20 mx-auto"></div>
+        <MediaSlider
+          videos={videos.map((item) => (
             <div key={item.id} className="flex flex-col gap-5">
               {item.youtubeId && (
                 <iframe
@@ -48,7 +49,7 @@ async function Media() {
               />
             </div>
           ))}
-        </div>
+        />
       </div>
     </div>
   );

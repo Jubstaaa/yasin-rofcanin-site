@@ -42,14 +42,14 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
             height={1080}
             src={image.src}
             alt={image.alt}
-            className="ml-auto w-3/5 h-full object-cover"
+            className="ml-auto w-4/6 h-full object-cover"
             priority={i === 0}
           />
         </SwiperSlide>
       ))}
       {user && (
         <motion.div
-          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-1/2 -translate-y-1/2 w-2/5 h-4/5 bg-white z-10 after:content-[''] after:absolute after:left-full after:top-0 after:w-20 after:h-full after:bg-white after:opacity-70"
+          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-1/2 -translate-y-1/2 w-2/6 h-4/5 bg-white z-10 after:content-[''] after:absolute after:left-full after:top-0 after:w-72 after:h-full after:bg-white after:opacity-90 space-y-8 pl-20"
           initial="hidden"
           animate="visible"
           variants={{
@@ -68,14 +68,14 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
             {user.lastName}
           </motion.h1>
           <motion.hr
-            className="w-32 ml-10 text-hover"
+            className="w-44 text-hover"
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           />
           {user.titles && (
             <motion.div
-              className="pl-20"
+              className="pl-20 w-[calc(100%+16rem)] relative z-10"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}

@@ -5,7 +5,7 @@ export default function EditorialRoles() {
   return (
     <section className="bg-gray-50">
       <div className="container mx-auto mt-16 py-16">
-        <div className="prose max-w-full">
+        <div className="prose max-w-full space-y-10">
           {/* Başlık ve Associate Editorship */}
           <div>
             <h2 className="text-4xl font-bold mt-0">Editorial Roles</h2>
@@ -65,6 +65,46 @@ export default function EditorialRoles() {
                 />
                 <div className="text-xs text-center text-hover underline opacity-80 group-hover:opacity-100">
                   Human Relations Editorial Team
+                </div>
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-center md:gap-6">
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold mb-1">
+                Journal of Management Studies
+              </h3>
+              <ul className="list-disc list-inside text-secondary [&>li::marker]:text-hover">
+                <li>
+                  <strong>British Journal of Management</strong> (Jan 2019 –
+                  Present)
+                </li>
+                <li>
+                  <strong>Journal of Occupational Health Psychology</strong>{" "}
+                  (Jan 2020 – Present)
+                </li>
+                <li>
+                  <strong>Journal of Organizational Behavior</strong> (Feb 2020
+                  – Present)
+                </li>
+              </ul>
+            </div>
+            <div className="flex-shrink-0 flex items-center justify-center mt-6 md:mt-0">
+              <Link
+                href="https://onlinelibrary.wiley.com/journal/14676486"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <Image
+                  src="/images/jms.webp"
+                  alt="Journal of Management Studies Logo"
+                  width={500}
+                  height={500}
+                  className="w-96 object-contain transition-transform group-hover:scale-105"
+                />
+                <div className="text-xs text-center text-hover underline opacity-80 group-hover:opacity-100">
+                  Journal of Management Studies Editorial Team
                 </div>
               </Link>
             </div>

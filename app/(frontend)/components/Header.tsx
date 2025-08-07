@@ -15,6 +15,7 @@ export const menus: MenuItem[] = [
   { name: "Homepage", href: "/" },
   { name: "About Me", href: "/about-me" },
   { name: "Keynote Talks", href: "/keynote-talks" },
+  { name: "Future of Work", href: "/future-of-work" },
   { name: "Publications", href: "/publications" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },

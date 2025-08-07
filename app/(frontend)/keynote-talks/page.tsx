@@ -21,9 +21,9 @@ export default async function KeynoteTalksPage() {
         description="Invited keynote speeches and talks at conferences, universities, and organizations."
       />
 
-      <div className="w-full flex flex-col lg:flex-row gap-8 px-0 md:px-8 max-w-none">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-0 md:px-8 max-w-none">
         {/* Left: Talks List */}
-        <div className="flex-1 flex flex-col gap-8 py-16">
+        <div className="flex-1 flex flex-col gap-8 py-16 justify-between">
           {talks.length === 0 ? (
             <div className="text-gray-400 italic text-center">
               No keynote talks found.
@@ -65,7 +65,7 @@ export default async function KeynoteTalksPage() {
           )}
         </div>
         {/* Right: LinkedIn Feed (Elfsight Widget) */}
-        <div className="w-full lg:w-[420px] flex-shrink-0 py-16 flex justify-center items-start">
+        <div className="w-full flex-shrink-0 py-16 flex justify-center items-start">
           <div
             className="elfsight-app-d4c74095-ecdd-422a-b654-85a46fa4a837"
             data-elfsight-app-lazy
