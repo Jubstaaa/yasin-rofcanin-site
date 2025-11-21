@@ -55,7 +55,6 @@ function Header() {
               </Link>
             ))}
           </div>
-          <div className="w-full" />
         </div>
 
         <Icon
