@@ -16,6 +16,7 @@ import { KeynoteTalk } from "./collections/KeynoteTalk";
 import { Publication } from "./collections/Publication";
 import { PublicationCategory } from "./collections/PublicationCategory";
 import { InviteImages } from "./collections/InviteImages";
+import { Book } from "./collections/Book";
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -34,6 +35,7 @@ export default buildConfig({
     KeynoteTalk,
     Publication,
     PublicationCategory,
+    Book,
   ],
   plugins: [
     vercelBlobStorage({

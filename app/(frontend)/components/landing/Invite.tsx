@@ -15,7 +15,7 @@ interface InviteProps {
 
 function Invite({ images, href }: InviteProps) {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 pb-24">
       <div className="grid grid-cols-2 gap-20 container mx-auto pt-24 mt-24 items-center">
         <div className="prose">
           <h3 className="text-5xl font-medium">Let&apos;s Exchange Ideas</h3>

@@ -14,38 +14,6 @@ import About from "./components/landing/About";
 import Invite from "./components/landing/Invite";
 import FutureOfWork from "./components/landing/FutureOfWork";
 
-async function getScholarStats() {
-  try {
-    const res = await fetch(
-      "https://scholar.google.com/citations?user=pzQhhegAAAAJ&hl=tr&oi=ao",
-      {
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        },
-        next: { revalidate: 3600 },
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch Google Scholar data");
-    }
-
-    const html = await res.text();
-
-    const statsMatches = [...html.matchAll(/class="gsc_rsb_std">(\d+)<\/td>/g)];
-
-    return {
-      citations: statsMatches[0] ? parseInt(statsMatches[0][1]) : 0,
-      hIndex: statsMatches[2] ? parseInt(statsMatches[2][1]) : 0,
-      i10Index: statsMatches[4] ? parseInt(statsMatches[4][1]) : 0,
-    };
-  } catch (error) {
-    console.error("Error scraping Google Scholar:", error);
-    return { citations: 0, hIndex: 0, i10Index: 0 };
-  }
-}
-
 export const metadata: Metadata = {
   title: "Home",
   description:
@@ -103,7 +71,11 @@ async function page() {
     },
   });
 
-  const scholarStats = await getScholarStats();
+  const scholarStats = {
+    citations: user?.scholarCitations || 0,
+    hIndex: user?.scholarHIndex || 0,
+    i10Index: user?.scholarI10Index || 0,
+  };
 
   return (
     <>

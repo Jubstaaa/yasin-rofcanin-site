@@ -55,7 +55,7 @@ async function BlogPage() {
 
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-0 md:px-8 max-w-none pt-16">
         {/* External Publications Section - Left */}
-        <section className="pt-16">
+        <section>
           <div className="mb-8">
             <h2 className="text-3xl font-bold mb-2">Media Appearances</h2>
             <p className="text-gray-600">Media appearances and interviews</p>
@@ -134,7 +134,7 @@ async function BlogPage() {
         </section>
 
         {/* Personal Blogs Section - Right */}
-        <section className="pt-16">
+        <section>
           <div className="mb-8">
             <h2 className="text-3xl font-bold mb-2">Orianted Outlets</h2>
             <p className="text-gray-600">Personal thoughts and insights</p>

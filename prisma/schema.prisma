@@ -27,8 +27,19 @@ model Media {
   SliderImages       SliderImages[]
   FutureOfWorkImages FutureOfWorkImages[]
   InviteImages       InviteImages[]
+  Book               Book[]
 
   @@map("media")
+}
+
+model Book {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  link    String
+  mediaId String? @db.ObjectId
+  media   Media?  @relation(fields: [mediaId], references: [id])
+
+  @@map("books")
 }
 
 model User {
@@ -40,6 +51,9 @@ model User {
   location                String?
   email                   String    @unique
   bio                     String?
+  scholarCitations        Int       @default(0)
+  scholarHIndex           Int       @default(0)
+  scholarI10Index         Int       @default(0)
   salt                    String
   hash                    String
   loginAttempts           Int       @default(0)

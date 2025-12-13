@@ -38,6 +38,27 @@ export const User: CollectionConfig = {
       type: "textarea",
     },
     {
+      name: "scholarCitations",
+      type: "number",
+      admin: {
+        description: "Google Scholar Citations Count",
+      },
+    },
+    {
+      name: "scholarHIndex",
+      type: "number",
+      admin: {
+        description: "Google Scholar h-index",
+      },
+    },
+    {
+      name: "scholarI10Index",
+      type: "number",
+      admin: {
+        description: "Google Scholar i10-index",
+      },
+    },
+    {
       name: "mediaId",
       type: "upload",
       relationTo: "media",

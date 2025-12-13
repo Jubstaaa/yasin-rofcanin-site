@@ -13,3 +13,4 @@ export const InviteImagesService = prisma.inviteImages;
 export const TeachingService = prisma.teaching;
 export const VisitingService = prisma.visiting;
 export const KeynoteTalkService = prisma.keynoteTalk;
+export const BookService = prisma.book;
