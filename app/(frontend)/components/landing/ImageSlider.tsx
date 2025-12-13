@@ -30,19 +30,19 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
       slidesPerView={1}
       autoplay={{ delay: 3000 }}
       loop
-      className="w-full h-[700px] relative"
+      className="w-full h-[calc(100dvh-90px)] relative"
       onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       onSwiper={(swiper) => (swiperRef.current = swiper)}
     >
       {images.map((image, i) => (
-        <SwiperSlide key={i}>
+        <SwiperSlide key={i} className="aspect-square">
           <video
             src="https://fppnyxariyb6rpz5.public.blob.vercel-storage.com/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
             autoPlay
             loop
             muted
             playsInline
-            className="ml-auto w-5/6 h-full object-cover -mr-60"
+            className="ml-auto w-auto h-full object-cover aspect-video"
           />
         </SwiperSlide>
       ))}
