@@ -4,7 +4,6 @@ import ImageSlider from "./components/landing/ImageSlider";
 import {
   FutureOfWorkImagesService,
   InviteImagesService,
-  SliderImageService,
   UserService,
 } from "@/lib/services";
 import Media from "./components/landing/Media";
@@ -47,12 +46,6 @@ export const metadata: Metadata = {
 };
 
 async function page() {
-  const sliderImages = await SliderImageService.findMany({
-    select: {
-      media: true,
-    },
-  });
-
   const user = await UserService.findUnique({
     where: {
       email: "y.rofcanin@bath.ac.uk",
@@ -80,10 +73,6 @@ async function page() {
   return (
     <>
       <ImageSlider
-        images={sliderImages.map((item) => ({
-          src: item.media.url,
-          alt: item.media.alt,
-        }))}
         user={{
           firstName: user?.firstName,
           lastName: user?.lastName,

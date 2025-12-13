@@ -1,18 +1,7 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { useRef, useState } from "react";
-import type { Swiper as SwiperType } from "swiper";
 import { motion } from "framer-motion";
 
 interface ImageSliderProps {
-  images: {
-    src: string;
-    alt: string;
-  }[];
   user?: {
     firstName?: string;
     lastName?: string;
@@ -20,10 +9,7 @@ interface ImageSliderProps {
   };
 }
 
-export default function ImageSlider({ images, user }: ImageSliderProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const swiperRef = useRef<SwiperType | null>(null);
-
+export default function ImageSlider({ user }: ImageSliderProps) {
   return (
     <div className="w-full h-auto aspect-video relative">
       <video
