@@ -25,30 +25,18 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <Swiper
-      modules={[Pagination, Autoplay]}
-      slidesPerView={1}
-      autoplay={{ delay: 3000 }}
-      loop
-      className="w-full h-[calc(100dvh-90px)] relative"
-      onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-      onSwiper={(swiper) => (swiperRef.current = swiper)}
-    >
-      {images.map((image, i) => (
-        <SwiperSlide key={i} className="aspect-square">
-          <video
-            src="https://fppnyxariyb6rpz5.public.blob.vercel-storage.com/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="ml-auto w-auto h-full object-cover aspect-video"
-          />
-        </SwiperSlide>
-      ))}
+    <div className="w-full h-auto aspect-video relative">
+      <video
+        src="https://fppnyxariyb6rpz5.public.blob.vercel-storage.com/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="w-full h-full object-cover"
+      />
       {user && (
         <motion.div
-          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-[40%] -translate-y-1/2 w-1/6 h-3/5 bg-white z-10 after:content-[''] after:absolute after:left-full after:top-0 after:w-xl after:h-full after:bg-white after:opacity-90 space-y-4 pl-20"
+          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-[40%] -translate-y-1/2 w-auto h-auto p-10 bg-white z-10 opacity-90 space-y-4"
           initial="hidden"
           animate="visible"
           variants={{
@@ -94,18 +82,8 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
               ))}
             </motion.div>
           )}
-          <div className="absolute bottom-0 left-0 flex gap-2 pl-20 ">
-            {images.map((_, idx) => (
-              <button
-                key={idx}
-                className={`cursor-pointer w-3 h-3 rounded-full border-2 ${activeIndex === idx ? "bg-black border-black" : "bg-white border-gray-400"}`}
-                onClick={() => swiperRef.current?.slideToLoop(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
         </motion.div>
       )}
-    </Swiper>
+    </div>
   );
 }
