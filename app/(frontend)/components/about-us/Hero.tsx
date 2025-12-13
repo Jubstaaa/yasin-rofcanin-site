@@ -1,5 +1,9 @@
 import React from "react";
-import { SocialService, UserService } from "@/lib/services";
+import {
+  FutureOfWorkImagesService,
+  SocialService,
+  UserService,
+} from "@/lib/services";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
@@ -15,16 +19,37 @@ async function Hero() {
   });
 
   const socials = await SocialService.findMany();
+
+  const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
+    select: {
+      media: true,
+    },
+  });
+
   return (
     <div className="grid grid-cols-2 gap-20 p-32 pb-0 relative">
-      {user?.media?.url && user?.media?.alt && (
-        <Image
-          src={user?.media?.url}
-          alt={user?.media?.alt}
-          width={1000}
-          height={1000}
-        />
-      )}
+      <div className="relative h-[600px]">
+        {futureOfWorkImages && futureOfWorkImages.length >= 2 && (
+          <>
+            <div className="absolute top-0 left-0 w-[80%] h-[400px]">
+              <Image
+                src={futureOfWorkImages[0].media.url}
+                alt={futureOfWorkImages[0].media.alt}
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="absolute bottom-0 right-0 w-[80%] h-[400px]">
+              <Image
+                src={futureOfWorkImages[1].media.url}
+                alt={futureOfWorkImages[1].media.alt}
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+          </>
+        )}
+      </div>
       <div className="prose prose-a:text-hover">
         <h3 className="text-6xl font-normal leading-tight">
           <span className="block">{user?.firstName}</span>

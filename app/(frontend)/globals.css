@@ -3,12 +3,22 @@
 @plugin "@tailwindcss/typography";
 @config '../../tailwind.config.ts';
 
+:root {
+  --swiper-theme-color: #1c8c52;
+  --swiper-pagination-color: #1c8c52;
+  --swiper-pagination-bullet-inactive-opacity: 0.4;
+}
+
 html {
   @apply scroll-smooth;
 }
 
 body {
   @apply font-primary bg-white text-primary;
+}
+
+.font-rancho {
+  font-family: var(--font-rancho);
 }
 
 a {

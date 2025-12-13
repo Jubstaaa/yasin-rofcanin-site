@@ -1,0 +1,28 @@
+/* Media Slider Pagination Styles */
+.media-slider-custom-pagination {
+  min-width: 0;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    /* background rengi --swiper-theme-color değişkeninden gelir */
+    margin: 0 4px !important;
+    transition: opacity 0.2s, transform 0.2s;
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &-active {
+      /* background rengi --swiper-theme-color değişkeninden gelir */
+      transform: scale(1.2);
+    }
+
+    &:focus {
+      outline: 2px solid #1C8C52;
+    }
+  }
+}

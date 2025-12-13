@@ -17,10 +17,10 @@ async function Publications() {
   });
 
   return (
-    <div className="flex flex-col gap-10 items-center pt-24">
+    <div className="flex flex-col gap-10 items-center pt-40">
       <AnimatedText
-        text="PUBLICATIONS"
-        className="text-[200px] text-[#f1f1f1] font-extrabold text-center -mb-20"
+        text="Selected Publications"
+        className="text-[100px] text-[#f1f1f1] font-extrabold text-center -mb-10"
       />
       <div className="container mx-auto grid grid-cols-3 gap-10">
         {publications.map((item) => (

@@ -9,15 +9,21 @@ import Image from "next/image";
 export interface MenuItem {
   name: string;
   href: string;
+  target?: "_blank";
 }
 
 export const menus: MenuItem[] = [
   { name: "Homepage", href: "/" },
   { name: "About Me", href: "/about-me" },
   { name: "Keynote Talks", href: "/keynote-talks" },
-  { name: "Future of Work", href: "/future-of-work" },
+  {
+    name: "Future of Work",
+    href: "https://www.bath.ac.uk/research-centres/future-of-work-fow-research-centre/",
+    target: "_blank",
+  },
   { name: "Publications", href: "/publications" },
-  { name: "Blog", href: "/blog" },
+  { name: "Yasin's Team", href: "/yasin-s-team" },
+  { name: "Opinions", href: "/opinions" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -33,23 +39,22 @@ function Header() {
         )}
       >
         <div className="max-w-7xl w-full mx-auto flex flex-row flex-nowrap items-center justify-between">
-          <div className="border-l border-divider w-full">
-            <Link href="/">
-              <Image
-                className="w-auto h-12 pl-5"
-                src="/images/logo.png"
-                width={500}
-                height={500}
-                alt="Yasin Rofcanin Site Logo"
-              />
-            </Link>
-          </div>
-          <div className="hidden lg:flex items-center justify-center flex-1 gap-6 text-primary font-medium">
+          <Link href="/">
+            <Image
+              className="w-auto h-12 pl-5"
+              src="/images/logo.png"
+              width={500}
+              height={500}
+              alt="Yasin Rofcanin Site Logo"
+            />
+          </Link>
+          <div className="hidden lg:flex items-center justify-center flex-1 gap-3 text-primary font-medium">
             {menus.map((menu, i) => (
               <Link
                 key={i}
-                className="p-4 transition-all duration-300 hover:text-hover text-lg whitespace-nowrap font-medium"
+                className="p-4 transition-all duration-300 hover:text-hover text-base whitespace-nowrap font-medium"
                 href={menu.href}
+                target={menu.target}
               >
                 {menu.name}
               </Link>

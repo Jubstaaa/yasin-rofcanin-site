@@ -8,12 +8,16 @@ import { motion } from "framer-motion";
 const PROFILE_IMAGE_URL =
   "https://fppnyxariyb6rpz5.public.blob.vercel-storage.com/c59b99fc-0a56-4ee2-8c59-272057a79f7e.webp";
 
-function About({ name }: { name: string }) {
+function About({
+  scholarStats,
+}: {
+  scholarStats: { citations: number; hIndex: number; i10Index: number };
+}) {
   return (
-    <div className="flex flex-col gap-10 items-center">
+    <div className="flex flex-col gap-10 items-center pt-20">
       <AnimatedText
-        text={name}
-        className="text-[200px] text-[#f1f1f1] font-extrabold text-center -mb-40 container mx-auto w-full"
+        text="Academic Profile"
+        className="text-[150px] text-[#f1f1f1] font-extrabold text-center -mb-10 mx-auto w-full"
       />
       {/* Main content */}
       <div className="relative z-10 w-full container mx-auto grid grid-cols-2 gap-12 justify-between">
@@ -56,30 +60,38 @@ function About({ name }: { name: string }) {
         {/* Right: Content */}
         <div className="relative z-10 flex-1 flex flex-col justify-center gap-8 md:pl-8">
           <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-            Best Designers &amp; <br />
-            Architectures <span className="text-hover">for You</span>
+            Scholar in{" "}
+            <span className="text-hover">Organisational Psychology & HRM</span>
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-xl">
-            Design affects human. It changes the view of life and the
-            self-image. According to the opinion specialists, a good design is a
-            space that matches with the lifestyle, habits and nature of the
-            person.
+            He is passionate about how flexible work practices, proactive
+            employee behaviours, and work-family enrichment shape well-being and
+            effectiveness at work; published in leading journals, and actively
+            contributes to the field as an editorial board member.
           </p>
           <div className="flex gap-24 mt-4 justify-center">
             <div className="flex flex-col items-center">
               <span className="text-3xl md:text-6xl font-light text-hover">
-                200+
+                {scholarStats.citations}
               </span>
               <span className="text-gray-700 text-xl font-medium mt-1">
-                Projects Finished
+                Citations
               </span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-3xl md:text-6xl font-light text-hover">
-                180+
+                {scholarStats.hIndex}
               </span>
               <span className="text-gray-700 text-xl font-medium mt-1">
-                Happy Clients
+                h-Index
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-6xl font-light text-hover">
+                {scholarStats.i10Index}
+              </span>
+              <span className="text-gray-700 text-xl font-medium mt-1">
+                i10-Index
               </span>
             </div>
           </div>

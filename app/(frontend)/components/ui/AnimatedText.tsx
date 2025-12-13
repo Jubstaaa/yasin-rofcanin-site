@@ -11,7 +11,7 @@ interface AnimatedTextProps {
 export default function AnimatedText({ text, className }: AnimatedTextProps) {
   return (
     <div
-      className={`${className} flex justify-between uppercase w-fit mx-auto`}
+      className={`${className} flex justify-center uppercase w-fit mx-auto gap-4`}
     >
       {text.split("").map((char, index) => (
         <motion.span

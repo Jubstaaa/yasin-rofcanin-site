@@ -4,7 +4,6 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { motion } from "framer-motion";
@@ -31,25 +30,25 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
       slidesPerView={1}
       autoplay={{ delay: 3000 }}
       loop
-      className="w-full h-[840px] relative"
+      className="w-full h-[700px] relative"
       onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       onSwiper={(swiper) => (swiperRef.current = swiper)}
     >
       {images.map((image, i) => (
         <SwiperSlide key={i}>
-          <Image
-            width={1920}
-            height={1080}
-            src={image.src}
-            alt={image.alt}
-            className="ml-auto w-4/6 h-full object-cover"
-            priority={i === 0}
+          <video
+            src="https://fppnyxariyb6rpz5.public.blob.vercel-storage.com/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="ml-auto w-5/6 h-full object-cover -mr-60"
           />
         </SwiperSlide>
       ))}
       {user && (
         <motion.div
-          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-1/2 -translate-y-1/2 w-2/6 h-4/5 bg-white z-10 after:content-[''] after:absolute after:left-full after:top-0 after:w-72 after:h-full after:bg-white after:opacity-90 space-y-8 pl-20"
+          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-[40%] -translate-y-1/2 w-1/6 h-3/5 bg-white z-10 after:content-[''] after:absolute after:left-full after:top-0 after:w-xl after:h-full after:bg-white after:opacity-90 space-y-4 pl-20"
           initial="hidden"
           animate="visible"
           variants={{
@@ -58,14 +57,12 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
           }}
         >
           <motion.h1
-            className="text-6xl pl-20"
+            className="text-8xl pl-10 w-[calc(100%+40rem)] z-10 font-rancho"
             initial={{ opacity: 0, y: -40, x: -40 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            {user.firstName}
-            <br />
-            {user.lastName}
+            {user.firstName} {user.lastName}
           </motion.h1>
           <motion.hr
             className="w-44 text-hover"
@@ -75,14 +72,14 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
           />
           {user.titles && (
             <motion.div
-              className="pl-20 w-[calc(100%+16rem)] relative z-10"
+              className="pl-10 w-[calc(100%+40rem)] relative z-10"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {user.titles.map((title, i) => (
                 <motion.p
-                  className="text-lg text-secondary leading-relaxed"
+                  className="text-base text-secondary leading-relaxed"
                   key={i}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -97,7 +94,7 @@ export default function ImageSlider({ images, user }: ImageSliderProps) {
               ))}
             </motion.div>
           )}
-          <div className="absolute bottom-8 left-0 flex gap-2 pl-20 ">
+          <div className="absolute bottom-0 left-0 flex gap-2 pl-20 ">
             {images.map((_, idx) => (
               <button
                 key={idx}

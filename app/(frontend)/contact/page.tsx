@@ -89,13 +89,6 @@ async function page() {
               <div className="relative z-10 text-white p-10 flex flex-col gap-6">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <Icon icon="mdi:map-marker" className="w-7 h-7" />
-                    <span className="font-semibold text-lg">Address</span>
-                  </div>
-                  <div className="text-base">{user?.location}</div>
-                </div>
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
                     <Icon icon="mdi:email-outline" className="w-7 h-7" />
                     <span className="font-semibold text-lg">Email</span>
                   </div>
