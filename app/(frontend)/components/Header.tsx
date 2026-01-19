@@ -34,14 +34,14 @@ function Header() {
     <header className={cn("relative")}>
       <div
         className={cn(
-          "flex items-center justify-center h-[90px] relative shadow bg-white z-20 transition-all gap-2",
+          "flex items-center justify-center h-[70px] md:h-[80px] lg:h-[90px] relative shadow bg-white z-20 transition-all gap-2 px-4 md:px-6 lg:px-8",
           { "rounded-b-none": isOpen }
         )}
       >
         <div className="max-w-7xl w-full mx-auto flex flex-row flex-nowrap items-center justify-between">
           <Link href="/">
             <Image
-              className="w-auto h-12 pl-5"
+              className="w-auto h-8 md:h-10 lg:h-12"
               src="/images/logo.png"
               width={500}
               height={500}
@@ -65,7 +65,7 @@ function Header() {
         <Icon
           onClick={() => setIsOpen((state) => !state)}
           icon="mdi:menu"
-          className="lg:hidden w-8 h-8 cursor-pointer"
+          className="lg:hidden w-7 h-7 md:w-8 md:h-8 cursor-pointer mr-2"
         />
       </div>
       <AnimatePresence>
@@ -81,8 +81,9 @@ function Header() {
               <Link
                 key={i}
                 href={menu.href}
-                className="w-full text-center py-3 text-lg font-medium transition-all duration-300 hover:text-[#475569] active:opacity-50"
+                className="w-full text-center py-3 text-base md:text-lg font-medium transition-all duration-300 hover:text-[#475569] active:opacity-50"
                 onClick={() => setIsOpen(false)}
+                target={menu.target}
               >
                 {menu.name}
               </Link>

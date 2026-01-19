@@ -27,11 +27,11 @@ async function Hero() {
   });
 
   return (
-    <div className="grid grid-cols-2 gap-20 p-32 pb-0 relative">
-      <div className="relative h-[600px]">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 p-4 md:p-8 lg:p-16 xl:p-32 pb-0 relative">
+      <div className="relative h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1">
         {futureOfWorkImages && futureOfWorkImages.length >= 2 && (
           <>
-            <div className="absolute top-0 left-0 w-[80%] h-[400px]">
+            <div className="absolute top-0 left-0 w-full md:w-[85%] lg:w-[80%] h-[200px] md:h-[300px] lg:h-[400px]">
               <Image
                 src={futureOfWorkImages[0].media.url}
                 alt={futureOfWorkImages[0].media.alt}
@@ -39,7 +39,7 @@ async function Hero() {
                 className="object-cover rounded-lg"
               />
             </div>
-            <div className="absolute bottom-0 right-0 w-[80%] h-[400px]">
+            <div className="absolute bottom-0 right-0 w-full md:w-[85%] lg:w-[80%] h-[200px] md:h-[300px] lg:h-[400px]">
               <Image
                 src={futureOfWorkImages[1].media.url}
                 alt={futureOfWorkImages[1].media.alt}
@@ -50,15 +50,15 @@ async function Hero() {
           </>
         )}
       </div>
-      <div className="prose prose-a:text-hover">
-        <h3 className="text-6xl font-normal leading-tight">
+      <div className="prose prose-a:text-hover max-w-none order-1 lg:order-2">
+        <h3 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight">
           <span className="block">{user?.firstName}</span>
           <span className="block text-hover">{user?.lastName}</span>
         </h3>
-        <p className="text-xl">
+        <p className="text-lg md:text-xl">
           Chair in Organisational Psychology and Human Resource Management
         </p>
-        <p className="text-secondary">
+        <p className="text-secondary text-sm md:text-base">
           I am a Professor of Organisational Psychology and Human Resource
           Management at the University of Bath, School of Management. Born and
           educated in Istanbul (Bogazici University), I completed my Ph.D. study
@@ -72,11 +72,11 @@ async function Hero() {
           productivity. My ideas have reached a wide range of audience through
           my peer-reviewed publications, book and articles targeted at managers.
         </p>
-        <h3 className="text-2xl">Contact Me</h3>
-        <p className="font-semibold">
+        <h3 className="text-xl md:text-2xl">Contact Me</h3>
+        <p className="font-semibold text-sm md:text-base break-all">
           Email: <Link href={`mailto:${user?.email}`}>{user?.email}</Link>
         </p>
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           {socials.map((social) => (
             <Link
               href={social.link}
@@ -84,13 +84,13 @@ async function Hero() {
               target="_blank"
               className="!text-primary hover:!text-hover"
             >
-              <Icon className="w-7 h-7" icon={social.icon} />
+              <Icon className="w-6 h-6 md:w-7 md:h-7" icon={social.icon} />
             </Link>
           ))}
         </div>
       </div>
       <Image
-        className="absolute top-0 left-0 w-1/6 h-full object-cover -z-1"
+        className="hidden lg:block absolute top-0 left-0 w-1/6 h-full object-cover -z-1"
         src="/images/bg-media.jpg"
         alt="bg-media"
         width={1000}

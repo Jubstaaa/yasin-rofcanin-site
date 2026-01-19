@@ -14,13 +14,13 @@ interface FutureOfWorkProps {
 
 function FutureOfWork({ images }: FutureOfWorkProps) {
   return (
-    <div className="grid grid-cols-2 gap-20 container mx-auto pt-24">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 container mx-auto pt-12 md:pt-16 lg:pt-24 px-4">
       <div className="prose">
-        <h3 className="text-5xl font-medium">Future of Work</h3>
-        <span className="font-bold text-secondary">
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium">Future of Work</h3>
+        <span className="font-bold text-secondary text-sm md:text-base">
           Future of Work Research Centre Leadership
         </span>
-        <p>
+        <p className="text-sm md:text-base">
           {" "}
           I am a Co-Director of the{" "}
           <b className="text-secondary">
@@ -28,7 +28,7 @@ function FutureOfWork({ images }: FutureOfWorkProps) {
           </b>{" "}
           Research at University of Bath, School of Management.
         </p>
-        <ul className="list-disc list-inside text-secondary [&>li::marker]:text-hover">
+        <ul className="list-disc list-inside text-secondary text-sm md:text-base [&>li::marker]:text-hover">
           <li className="leading-loose">
             We organise workshops on improving the quality of research output at
             the School level (Sessions of Deep Reading, Writing Retreats and
@@ -53,7 +53,7 @@ function FutureOfWork({ images }: FutureOfWorkProps) {
         </Button>
       </div>
 
-      <div className="relative h-[600px]">
+      <div className="relative h-[400px] md:h-[500px] lg:h-[600px]">
         {images && images.length >= 2 && (
           <>
             <motion.div
@@ -61,7 +61,7 @@ function FutureOfWork({ images }: FutureOfWorkProps) {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true, margin: "-100px" }}
-              className="absolute top-0 left-0 w-[80%] h-[400px]"
+              className="absolute top-0 left-0 w-full md:w-[85%] lg:w-[80%] h-[200px] md:h-[300px] lg:h-[400px]"
             >
               <Image
                 src={images[0].src}
@@ -76,7 +76,7 @@ function FutureOfWork({ images }: FutureOfWorkProps) {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="absolute bottom-0 right-0 w-[80%] h-[400px]"
+              className="absolute bottom-0 right-0 w-full md:w-[85%] lg:w-[80%] h-[200px] md:h-[300px] lg:h-[400px]"
             >
               <Image
                 src={images[1].src}

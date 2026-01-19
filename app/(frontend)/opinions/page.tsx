@@ -53,7 +53,7 @@ async function BlogPage() {
         description="Insights, stories, and updates from my professional journey."
       />
 
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-0 md:px-8 max-w-none pt-16">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 px-4 md:px-8 max-w-none pt-8 md:pt-12 lg:pt-16">
         {/* External Publications Section - Left */}
         <section>
           <div className="mb-8">

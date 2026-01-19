@@ -17,10 +17,10 @@ function MediaSlider({ videos }: { videos: React.ReactNode[] }) {
     <div className="relative w-full">
       <Swiper
         modules={[Pagination, Autoplay]}
-        slidesPerView={2}
-        spaceBetween={30}
+        slidesPerView={1}
+        spaceBetween={15}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        loop={videos.length > 2}
+        loop={videos.length > 1}
         className="w-full"
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
@@ -30,6 +30,20 @@ function MediaSlider({ videos }: { videos: React.ReactNode[] }) {
           el: ".media-slider-custom-pagination",
           type: "bullets",
         }}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 25,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+        }}
       >
         {videos.map((item, index) => (
           <SwiperSlide key={index}>{item}</SwiperSlide>
@@ -37,7 +51,7 @@ function MediaSlider({ videos }: { videos: React.ReactNode[] }) {
       </Swiper>
 
       {/* Navigation and Pagination Controls */}
-      <div className="flex justify-center items-center gap-3 pt-5">
+      <div className="flex justify-center items-center gap-2 md:gap-3 pt-4 md:pt-5">
         <button
           type="button"
           className={inlineArrowBtnClass}

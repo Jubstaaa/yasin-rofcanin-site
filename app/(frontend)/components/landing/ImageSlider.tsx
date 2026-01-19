@@ -22,7 +22,7 @@ export default function ImageSlider({ user }: ImageSliderProps) {
       />
       {user && (
         <motion.div
-          className="flex flex-col items-start justify-center gap-4 absolute left-0 top-[40%] -translate-y-1/2 w-auto h-auto p-10 bg-white z-10 opacity-90 space-y-4"
+          className="flex flex-col items-start justify-center gap-2 md:gap-3 lg:gap-4 absolute left-0 top-[50%] md:top-[40%] -translate-y-1/2 w-auto h-auto p-4 md:p-6 lg:p-10 bg-white z-10 opacity-90 space-y-2 md:space-y-3 lg:space-y-4"
           initial="hidden"
           animate="visible"
           variants={{
@@ -31,7 +31,7 @@ export default function ImageSlider({ user }: ImageSliderProps) {
           }}
         >
           <motion.h1
-            className="text-8xl pl-10 w-[calc(100%+40rem)] z-10 font-rancho"
+            className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl pl-4 md:pl-6 lg:pl-10 w-auto max-w-[90vw] md:max-w-none md:w-[calc(100%+20rem)] lg:w-[calc(100%+40rem)] z-10 font-rancho"
             initial={{ opacity: 0, y: -40, x: -40 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -39,21 +39,21 @@ export default function ImageSlider({ user }: ImageSliderProps) {
             {user.firstName} {user.lastName}
           </motion.h1>
           <motion.hr
-            className="w-44 text-hover"
+            className="w-24 md:w-32 lg:w-44 text-hover"
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           />
           {user.titles && (
             <motion.div
-              className="pl-10 w-[calc(100%+40rem)] relative z-10"
+              className="pl-4 md:pl-6 lg:pl-10 w-auto max-w-[90vw] md:max-w-none md:w-[calc(100%+20rem)] lg:w-[calc(100%+40rem)] relative z-10"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               {user.titles.map((title, i) => (
                 <motion.p
-                  className="text-base text-secondary leading-relaxed"
+                  className="text-xs md:text-sm lg:text-base text-secondary leading-relaxed"
                   key={i}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}

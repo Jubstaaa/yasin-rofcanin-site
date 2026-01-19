@@ -67,22 +67,22 @@ async function PublicationsPage() {
         description="My work with colleagues explore three interrelated areas in management research."
       />
 
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-0 md:px-8 max-w-none pt-16">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 px-4 md:px-8 max-w-none pt-8 md:pt-12 lg:pt-16">
         {/* Publications Section - Left */}
         <section>
-          <div className="mb-8 flex flex-col gap-4">
+          <div className="mb-6 md:mb-8 flex flex-col gap-3 md:gap-4">
             <div>
-              <h2 className="text-3xl font-bold mb-2">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">
                 Professor of Psychology
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm md:text-base">
                 Over 500 scientific articles and more than 30 books published,
-                Yasin Rofcanin is one of the world’s most prolific and
+                Yasin Rofcanin is one of the world&apos;s most prolific and
                 influential psychologists.
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-4">
               {googleScholar && (
                 <Button
                   href={googleScholar.link}
@@ -104,22 +104,22 @@ async function PublicationsPage() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-12 mt-12">
+          <div className="flex flex-col gap-8 md:gap-10 lg:gap-12 mt-8 md:mt-10 lg:mt-12">
             {categories.map((category) => (
               <div key={category.id}>
-                <h3 className="text-xl md:text-2xl font-bold mb-6 pl-2 border-l-4 border-hover bg-green-50/40 py-2">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-4 md:mb-6 pl-2 border-l-4 border-hover bg-green-50/40 py-2">
                   {category.name}
                 </h3>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-4 md:gap-5 lg:gap-6">
                   {category.publications.length === 0 ? (
-                    <div className="text-gray-400 italic">
+                    <div className="text-gray-400 italic text-sm md:text-base">
                       No publications in this category.
                     </div>
                   ) : (
                     category.publications.map((pub) => (
                       <div
                         key={pub.id}
-                        className="bg-white border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300"
+                        className="bg-white border border-gray-100 rounded-xl p-4 md:p-5 lg:p-6 hover:shadow-lg transition-all duration-300"
                       >
                         <span className="text-xs font-semibold text-zinc-600 uppercase tracking-wider mb-2 block">
                           {pub.date
@@ -131,11 +131,11 @@ async function PublicationsPage() {
                             : ""}
                         </span>
                         <Link href={pub.link} target="_blank">
-                          <h4 className="text-lg font-medium mb-2 hover:text-hover transition-all duration-300 leading-snug">
+                          <h4 className="text-base md:text-lg font-medium mb-2 hover:text-hover transition-all duration-300 leading-snug">
                             {pub.name}
                           </h4>
                         </Link>
-                        <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+                        <p className="text-xs md:text-sm text-gray-500 mb-3 md:mb-4 line-clamp-2">
                           {pub.description}
                         </p>
                         <Link
@@ -157,24 +157,24 @@ async function PublicationsPage() {
 
         {/* Books Section - Right */}
         <section>
-          <div className="mb-10 border-b border-gray-200 pb-4">
-            <h2 className="text-3xl font-bold mb-2">Books</h2>
-            <p className="text-gray-600">Selected books and editorial works</p>
+          <div className="mb-6 md:mb-8 lg:mb-10 border-b border-gray-200 pb-3 md:pb-4">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Books</h2>
+            <p className="text-gray-600 text-sm md:text-base">Selected books and editorial works</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+          <div className="grid grid-cols-1 gap-6 md:gap-8 lg:gap-10">
             {books.length === 0 ? (
-              <div className="col-span-2 text-gray-400 italic text-center py-12 bg-gray-50 rounded-lg">
+              <div className="col-span-2 text-gray-400 italic text-center py-8 md:py-12 bg-gray-50 rounded-lg text-sm md:text-base">
                 No books found.
               </div>
             ) : (
               books.map((book) => (
-                <div key={book.id} className="flex gap-4 items-start group">
+                <div key={book.id} className="flex gap-3 md:gap-4 items-start group">
                   {/* Book Cover / Icon */}
                   <Link
                     href={book.link}
                     target="_blank"
-                    className="flex-shrink-0 w-48 h-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-200 relative shadow-sm group-hover:shadow-md transition-all duration-300 aspect-[3/4]"
+                    className="flex-shrink-0 w-28 md:w-36 lg:w-40 xl:w-48 h-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-200 relative shadow-sm group-hover:shadow-md transition-all duration-300 aspect-[3/4]"
                   >
                     {book.media ? (
                       <Image
@@ -187,7 +187,7 @@ async function PublicationsPage() {
                       <div className="w-full h-full flex items-center justify-center bg-gray-50 text-gray-300">
                         <Icon
                           icon="mdi:book-open-page-variant"
-                          className="w-8 h-8"
+                          className="w-6 h-6 md:w-8 md:h-8"
                         />
                       </div>
                     )}
@@ -196,7 +196,7 @@ async function PublicationsPage() {
                   {/* Content */}
                   <div className="flex flex-col gap-2">
                     <Link href={book.link} target="_blank">
-                      <h4 className="font-medium text-lg leading-snug group-hover:text-hover transition-colors line-clamp-2">
+                      <h4 className="font-medium text-base md:text-lg leading-snug group-hover:text-hover transition-colors line-clamp-2 md:line-clamp-3">
                         {book.name}
                       </h4>
                     </Link>

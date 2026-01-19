@@ -63,21 +63,21 @@ async function page() {
       {/* Main Content */}
       <AnimatedText
         text="TOUCH"
-        className="text-[200px] text-[#f1f1f1] font-extrabold text-center -mb-40"
+        className="text-[80px] md:text-[120px] lg:text-[160px] xl:text-[200px] text-[#f1f1f1] font-extrabold text-center -mb-20 md:-mb-28 lg:-mb-40"
       />
-      <div className="container mx-auto py-16 flex flex-col md:flex-row gap-12 items-start">
+      <div className="container mx-auto py-8 md:py-12 lg:py-16 px-4 flex flex-col lg:flex-row gap-8 md:gap-10 lg:gap-12 items-start">
         {/* Left: Image + Address Card */}
-        <div className="flex-1 flex justify-start">
-          <div className="relative w-auto h-full">
+        <div className="w-full lg:flex-1 flex justify-center lg:justify-start">
+          <div className="relative w-full max-w-full md:max-w-[320px] lg:max-w-[350px] h-auto">
             <Image
               src="/images/contact-books.jpg"
               alt="Contact Visual"
               width={350}
               height={350}
-              className="rounded-lg object-cover"
+              className="rounded-lg object-cover w-full h-auto"
             />
-            {/* Address Card: sağ alt köşe */}
-            <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-[320px] rounded-xl overflow-hidden shadow-2xl">
+            {/* Address Card */}
+            <div className="relative lg:absolute lg:right-0 lg:top-1/2 lg:translate-x-1/2 lg:-translate-y-1/2 mt-6 lg:mt-0 w-full lg:w-[280px] xl:w-[320px] rounded-xl overflow-hidden shadow-2xl">
               <div className="absolute inset-0 z-0">
                 <Image
                   src="/images/bg-media.jpg"
@@ -86,23 +86,23 @@ async function page() {
                   className="object-cover"
                 />
               </div>
-              <div className="relative z-10 text-white p-10 flex flex-col gap-6">
+              <div className="relative z-10 text-white p-6 md:p-8 lg:p-10 flex flex-col gap-4 md:gap-5 lg:gap-6">
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <Icon icon="mdi:email-outline" className="w-7 h-7" />
-                    <span className="font-semibold text-lg">Email</span>
+                  <div className="flex items-center gap-2 md:gap-3 mb-2">
+                    <Icon icon="mdi:email-outline" className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                    <span className="font-semibold text-base md:text-lg">Email</span>
                   </div>
                   <Link
                     href={`mailto:${user?.email}`}
-                    className="text-base underline"
+                    className="text-sm md:text-base underline break-all"
                   >
                     {user?.email}
                   </Link>
                 </div>
-                <div className="flex gap-4 mt-3">
+                <div className="flex gap-3 md:gap-4 mt-2 md:mt-3">
                   {socials.map((social) => (
                     <Link href={social.link} key={social.id} target="_blank">
-                      <Icon className="w-8 h-8" icon={social.icon} />
+                      <Icon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" icon={social.icon} />
                     </Link>
                   ))}
                 </div>
@@ -112,11 +112,11 @@ async function page() {
         </div>
 
         {/* Right: Contact Form */}
-        <div className="flex-1">
-          <h2 className="text-3xl font-bold mb-2">
+        <div className="w-full lg:flex-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Get <span className="text-hover">in touch</span>
           </h2>
-          <p className="text-gray-500 mb-8">
+          <p className="text-gray-500 text-sm md:text-base mb-6 md:mb-8">
             Got a question or just want to say hi? Contact me via the form
             below...
           </p>
