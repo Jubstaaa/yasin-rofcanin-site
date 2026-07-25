@@ -6,7 +6,15 @@ import PageHero from "../../components/ui/PageHero";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import RichText from "../../components/ui/RichText";
-import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+
+// Required by `output: "export"` — a dynamic route has to declare every page it
+// produces, since there is no server left to render an unknown slug on demand.
+export async function generateStaticParams() {
+  const posts = await BlogService.findMany({ where: { type: "personal" } });
+  return posts
+    .filter((post) => post.slug)
+    .map((post) => ({ slug: String(post.slug) }));
+}
 
 export async function generateMetadata({
   params,
@@ -132,10 +140,10 @@ async function BlogDetailPage({
           </div>
 
           {/* Blog Content */}
-          {blog.content && (
+          {blog.contentHtml && (
             <div className="prose prose-lg max-w-none">
               <RichText
-                data={blog.content as unknown as SerializedEditorState}
+                html={blog.contentHtml}
               />
             </div>
           )}

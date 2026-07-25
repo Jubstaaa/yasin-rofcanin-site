@@ -13,7 +13,7 @@ export default function ImageSlider({ user }: ImageSliderProps) {
   return (
     <div className="w-full h-auto aspect-video relative">
       <video
-        src="https://fppnyxariyb6rpz5.public.blob.vercel-storage.com/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
+        src="https://yasinrofcanin.fra1.cdn.digitaloceanspaces.com/beta/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
         autoPlay
         loop
         muted

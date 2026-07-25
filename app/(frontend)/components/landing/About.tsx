@@ -6,7 +6,7 @@ import AnimatedText from "../ui/AnimatedText";
 import { motion } from "framer-motion";
 
 const PROFILE_IMAGE_URL =
-  "https://fppnyxariyb6rpz5.public.blob.vercel-storage.com/c59b99fc-0a56-4ee2-8c59-272057a79f7e.webp";
+  "https://yasinrofcanin.fra1.cdn.digitaloceanspaces.com/beta/c59b99fc-0a56-4ee2-8c59-272057a79f7e.webp";
 
 function About({
   scholarStats,

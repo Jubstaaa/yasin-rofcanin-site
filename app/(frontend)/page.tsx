@@ -4,7 +4,7 @@ import ImageSlider from "./components/landing/ImageSlider";
 import {
   FutureOfWorkImagesService,
   InviteImagesService,
-  UserService,
+  profile,
 } from "@/lib/services";
 import Media from "./components/landing/Media";
 import Publications from "./components/landing/Publications";
@@ -46,11 +46,7 @@ export const metadata: Metadata = {
 };
 
 async function page() {
-  const user = await UserService.findUnique({
-    where: {
-      email: "y.rofcanin@bath.ac.uk",
-    },
-  });
+  const user = profile;
 
   const inviteImages = await InviteImagesService.findMany({
     select: {

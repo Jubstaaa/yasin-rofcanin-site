@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import { SocialService, UserService } from "@/lib/services";
+import { SocialService, profile } from "@/lib/services";
 import { MenuItem } from "./Header";
 
 export const menus: MenuItem[] = [
@@ -20,11 +20,7 @@ export const menus: MenuItem[] = [
 ];
 
 async function Footer() {
-  const user = await UserService.findUnique({
-    where: {
-      email: "y.rofcanin@bath.ac.uk",
-    },
-  });
+  const user = profile;
 
   const socials = await SocialService.findMany();
 

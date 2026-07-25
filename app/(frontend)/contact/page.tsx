@@ -3,9 +3,7 @@ import type { Metadata } from "next";
 import PageHero from "../components/ui/PageHero";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import Form from "../components/ui/Form";
-import { sendContactMail } from "@/lib/actions";
-import { UserService } from "@/lib/services";
+import { profile } from "@/lib/services";
 import Link from "next/link";
 import { SocialService } from "@/lib/services";
 import AnimatedText from "../components/ui/AnimatedText";
@@ -43,11 +41,7 @@ export const metadata: Metadata = {
 };
 
 async function page() {
-  const user = await UserService.findUnique({
-    where: {
-      email: "y.rofcanin@bath.ac.uk",
-    },
-  });
+  const user = profile;
 
   const socials = await SocialService.findMany();
 
@@ -111,41 +105,23 @@ async function page() {
           </div>
         </div>
 
-        {/* Right: Contact Form */}
+        {/* Right: Get in touch — the site is a static export, so there is no
+            server to post a form to. Email is the direct route instead. */}
         <div className="w-full lg:flex-1">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
             Get <span className="text-hover">in touch</span>
           </h2>
           <p className="text-gray-500 text-sm md:text-base mb-6 md:mb-8">
-            Got a question or just want to say hi? Contact me via the form
-            below...
+            Got a question or just want to say hi? Email is the quickest way to
+            reach me.
           </p>
-          <Form
-            action={sendContactMail}
-            fields={[
-              {
-                name: "name",
-                placeholder: "Your Name",
-                required: true,
-              },
-              {
-                name: "email",
-                placeholder: "Your Email",
-                required: true,
-              },
-              {
-                name: "subject",
-                placeholder: "Subject",
-                required: true,
-              },
-              {
-                name: "message",
-                placeholder: "Your Message",
-                type: "textarea",
-                required: true,
-              },
-            ]}
-          />
+          <Link
+            href={`mailto:${user?.email}`}
+            className="inline-flex items-center gap-2 md:gap-3 rounded-lg bg-hover px-5 md:px-6 py-3 text-white text-sm md:text-base"
+          >
+            <Icon icon="mdi:email-outline" className="w-5 h-5 md:w-6 md:h-6" />
+            {user?.email}
+          </Link>
         </div>
       </div>
     </>

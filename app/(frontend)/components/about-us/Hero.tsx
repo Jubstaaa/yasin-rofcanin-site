@@ -2,21 +2,14 @@ import React from "react";
 import {
   FutureOfWorkImagesService,
   SocialService,
-  UserService,
+  profile,
 } from "@/lib/services";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 async function Hero() {
-  const user = await UserService.findUnique({
-    where: {
-      email: "y.rofcanin@bath.ac.uk",
-    },
-    include: {
-      media: true,
-    },
-  });
+  const user = profile;
 
   const socials = await SocialService.findMany();
 

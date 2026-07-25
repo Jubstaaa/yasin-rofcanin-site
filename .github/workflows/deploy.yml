@@ -1,0 +1,63 @@
+name: CI / Deploy
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+concurrency:
+    group: deploy-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: npm
+
+            - run: npm ci
+            # `output: "export"` writes plain files to out/ — no server, nothing
+            # to containerise, and no database to reach at build time any more.
+            - run: npm run build
+
+            # Guards before rsync --delete: an empty or half-written export would
+            # otherwise wipe the live site. The grep is the one that matters — if
+            # the CDN base ever falls out of the build, every image 404s while the
+            # build still looks perfectly healthy.
+            - name: Sanity-check the export
+              run: |
+                  test -s out/index.html
+                  test "$(find out -type f -name '*.html' | wc -l)" -ge 6
+                  grep -q 'yasinrofcanin.fra1.cdn.digitaloceanspaces.com' out/index.html
+
+            - name: Deploy to droplet
+              if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+              env:
+                  DO_SSH_KEY: ${{ secrets.DO_SSH_KEY }}
+                  DO_HOST: ${{ secrets.DO_HOST }}
+                  DO_USER: ${{ secrets.DO_USER }}
+              run: |
+                  mkdir -p ~/.ssh
+                  echo "$DO_SSH_KEY" > ~/.ssh/id_ed25519
+                  chmod 600 ~/.ssh/id_ed25519
+                  ssh-keyscan -H "$DO_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+                  rsync -az --delete -e "ssh -i ~/.ssh/id_ed25519" \
+                    out/ "$DO_USER@$DO_HOST:/opt/proxy/sites/yasinrofcanin-beta/"
+
+            # Straight at the origin, bypassing Cloudflare, so a cached edge
+            # response cannot make a failed deploy look successful. -k because the
+            # origin serves a Cloudflare origin certificate; --resolve pins the IP.
+            - name: Verify the origin is serving the new build
+              if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+              env:
+                  DO_HOST: ${{ secrets.DO_HOST }}
+              run: |
+                  curl -sfk --resolve "beta.yasinrofcanin.com:443:$DO_HOST" \
+                    https://beta.yasinrofcanin.com/ -o /tmp/deployed.html
+                  grep -q 'Yasin Rofcanin' /tmp/deployed.html

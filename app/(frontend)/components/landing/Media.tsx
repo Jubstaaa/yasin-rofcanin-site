@@ -4,7 +4,6 @@ import MediaSlider from "./MediaSlider";
 import RichText from "../ui/RichText";
 import Link from "next/link";
 import Image from "next/image";
-import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 async function Media() {
   const videos = await VideoService.findMany({
@@ -45,7 +44,7 @@ async function Media() {
               )}
               <RichText
                 className="prose-p:!text-white prose-a:!text-hover prose-p:text-sm md:prose-p:text-base"
-                data={item.description as unknown as SerializedEditorState}
+                html={item.descriptionHtml}
               />
             </div>
           ))}
