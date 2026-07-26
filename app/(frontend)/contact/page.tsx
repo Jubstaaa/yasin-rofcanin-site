@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Contact - Yasin Rofcanin",
     description:
       "Get in touch with Yasin Rofcanin for research collaborations, speaking engagements, or academic inquiries.",
-    url: "https://yasinrofcanin.com/contact",
+    url: "/contact",
     images: [
       {
         url: "/images/og-image.jpg",

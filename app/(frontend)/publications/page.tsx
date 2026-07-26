@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Publications - Yasin Rofcanin",
     description:
       "Explore Yasin Rofcanin's academic publications and research papers in organisational behaviour.",
-    url: "https://yasinrofcanin.com/publications",
+    url: "/publications",
     images: [
       {
         url: "/images/og-image.jpg",

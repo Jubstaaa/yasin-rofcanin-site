@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "About Me - Yasin Rofcanin",
     description:
       "Learn more about Yasin Rofcanin, Professor of Organisational Behaviour at University of Bath.",
-    url: "https://yasinrofcanin.com/about-me",
+    url: "/about-me",
     images: [
       {
         url: "/images/og-image.jpg",

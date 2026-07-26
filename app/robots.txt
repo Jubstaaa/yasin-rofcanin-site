@@ -1,4 +1,7 @@
+# Crawling is allowed on purpose. This site sends `noindex` on every page, and a
+# crawler has to be able to fetch the page to see it — a Disallow here would
+# hide that tag and Google could keep the URLs in its index anyway.
+#
+# No Sitemap line: a noindex site should not be advertising pages for indexing.
 User-Agent: *
 Allow: /
-Disallow: /admin/
-Sitemap: https://yasinrofcanin.com/sitemap.xml

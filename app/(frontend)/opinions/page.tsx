@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Blog - Yasin Rofcanin",
     description:
       "Explore Yasin Rofcanin's blog posts and external publications on organisational behaviour and research.",
-    url: "https://yasinrofcanin.com/blog",
+    url: "/blog",
     images: [
       {
         url: "/images/og-image.jpg",
