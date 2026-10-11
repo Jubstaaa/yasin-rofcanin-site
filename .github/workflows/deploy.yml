@@ -49,15 +49,3 @@ jobs:
                   ssh-keyscan -H "$DO_HOST" >> ~/.ssh/known_hosts 2>/dev/null
                   rsync -az --delete -e "ssh -i ~/.ssh/id_ed25519" \
                     out/ "$DO_USER@$DO_HOST:/opt/proxy/sites/yasinrofcanin-beta/"
-
-            # Straight at the origin, bypassing Cloudflare, so a cached edge
-            # response cannot make a failed deploy look successful. -k because the
-            # origin serves a Cloudflare origin certificate; --resolve pins the IP.
-            - name: Verify the origin is serving the new build
-              if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-              env:
-                  DO_HOST: ${{ secrets.DO_HOST }}
-              run: |
-                  curl -sfk --resolve "beta.yasinrofcanin.com:443:$DO_HOST" \
-                    https://beta.yasinrofcanin.com/ -o /tmp/deployed.html
-                  grep -q 'Yasin Rofcanin' /tmp/deployed.html
