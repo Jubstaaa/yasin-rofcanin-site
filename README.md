@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yasin Rofcanin Site
 
-## Getting Started
+Beta of yasinrofcanin.com, the personal academic site of Professor Yasin Rofcanin. Pages: home, about me, keynote talks, publications, opinions (blog posts with detail pages) and contact. The beta sends `noindex` on every page.
 
-First, run the development server:
+The site was originally backed by Payload CMS on MongoDB. The CMS has been removed: all content was exported once into `lib/content.ts`, which is now the source of truth, and the site is built as a static export. Editing the site means editing that file. `lib/services.ts` keeps the old query-style helpers (`findMany`, `findFirst`, `findUnique`) over the static data so the pages did not need to change. Images are served from a DigitalOcean Spaces CDN.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- Next.js 15 (App Router, `output: "export"`)
+- React 19, TypeScript
+- Tailwind CSS 4, Radix UI, Framer Motion, Swiper, cobe
+- npm
+
+## Running it
+
+```sh
+npm install
+npm run dev      # next dev --turbopack
+npm run build    # static export to out/
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+No environment variables are needed to build the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`.github/workflows/deploy.yml` builds the export on every push to `main`, sanity-checks the output, and rsyncs `out/` to a server over SSH. The workflow reads the `DO_SSH_KEY`, `DO_HOST` and `DO_USER` repository secrets.
