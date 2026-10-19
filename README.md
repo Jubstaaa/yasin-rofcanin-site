@@ -9,15 +9,15 @@ The site was originally backed by Payload CMS on MongoDB. The CMS has been remov
 - Next.js 15 (App Router, `output: "export"`)
 - React 19, TypeScript
 - Tailwind CSS 4, Radix UI, Framer Motion, Swiper, cobe
-- npm
+- Bun
 
 ## Running it
 
 ```sh
-npm install
-npm run dev      # next dev --turbopack
-npm run build    # static export to out/
-npm run lint
+bun install
+bun run dev      # next dev --turbopack
+bun run build    # static export to out/
+bun run lint
 ```
 
 No environment variables are needed to build the site.

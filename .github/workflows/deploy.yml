@@ -19,12 +19,12 @@ jobs:
             - uses: actions/setup-node@v7
               with:
                   node-version: 22
-                  cache: npm
+            - uses: oven-sh/setup-bun@v2
 
-            - run: npm ci
+            - run: bun install --frozen-lockfile
             # `output: "export"` writes plain files to out/ — no server, nothing
             # to containerise, and no database to reach at build time any more.
-            - run: npm run build
+            - run: bun run build
 
             # Guards before rsync --delete: an empty or half-written export would
             # otherwise wipe the live site. The grep is the one that matters — if
