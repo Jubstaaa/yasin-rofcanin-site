@@ -1,7 +1,7 @@
+import { blogs } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
-import { BlogService } from "@/lib/services";
-import PageHero from "../components/ui/PageHero";
+import PageHero from "@/app/_components/page-hero";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,10 +38,7 @@ export const metadata: Metadata = {
   },
 };
 
-async function BlogPage() {
-  const blogs = await BlogService.findMany({
-    include: { media: true },
-  });
+function BlogPage() {
 
   const externalBlogs = blogs.filter((blog) => blog.type === "external");
   const personalBlogs = blogs.filter((blog) => blog.type === "personal");

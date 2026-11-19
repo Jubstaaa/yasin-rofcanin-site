@@ -1,12 +1,11 @@
+import { profile, socials } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
-import PageHero from "../components/ui/PageHero";
+import PageHero from "@/app/_components/page-hero";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import { profile } from "@/lib/services";
 import Link from "next/link";
-import { SocialService } from "@/lib/services";
-import AnimatedText from "../components/ui/AnimatedText";
+import AnimatedText from "@/app/_components/animated-text";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -40,10 +39,9 @@ export const metadata: Metadata = {
   },
 };
 
-async function page() {
+function page() {
   const user = profile;
 
-  const socials = await SocialService.findMany();
 
   return (
     <>

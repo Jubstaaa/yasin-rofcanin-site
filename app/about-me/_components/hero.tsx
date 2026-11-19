@@ -1,23 +1,13 @@
+import { futureOfWorkImages, profile, socials } from "@/lib/content";
 import React from "react";
-import {
-  FutureOfWorkImagesService,
-  SocialService,
-  profile,
-} from "@/lib/services";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
-async function Hero() {
+function Hero() {
   const user = profile;
 
-  const socials = await SocialService.findMany();
 
-  const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
-    select: {
-      media: true,
-    },
-  });
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 p-4 md:p-8 lg:p-16 xl:p-32 pb-0 relative">

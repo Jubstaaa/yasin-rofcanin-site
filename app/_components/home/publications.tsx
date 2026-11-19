@@ -1,20 +1,12 @@
-import { PublicationService } from "@/lib/services";
+import { publications } from "@/lib/content";
 import Link from "next/link";
 import React from "react";
 import { Icon } from "@iconify/react";
-import Button from "../ui/Button";
-import AnimatedText from "../ui/AnimatedText";
+import Button from "@/app/_components/button";
+import AnimatedText from "@/app/_components/animated-text";
 
-async function Publications() {
-  const publications = await PublicationService.findMany({
-    take: 3,
-    select: {
-      id: true,
-      name: true,
-      link: true,
-      publicationCategory: true,
-    },
-  });
+function Publications() {
+  const latest = publications.slice(0, 3);
 
   return (
     <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 items-center pt-20 md:pt-28 lg:pt-40 px-4">
@@ -23,7 +15,7 @@ async function Publications() {
         className="text-[50px] md:text-[70px] lg:text-[90px] xl:text-[100px] text-[#f1f1f1] font-extrabold text-center -mb-6 md:-mb-8 lg:-mb-10"
       />
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
-        {publications.map((item) => (
+        {latest.map((item) => (
           <Link
             href={item.link}
             key={item.id}
