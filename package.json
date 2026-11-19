@@ -15,7 +15,6 @@
         "@types/tinycolor2": "^1.4.6",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
-        "cobe": "^0.6.3",
         "dayjs": "^1.11.23",
         "framer-motion": "^12.12.1",
         "next": "^16.4.6",
