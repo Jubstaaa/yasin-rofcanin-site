@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og-image";
 import React from "react";
 import type { Metadata } from "next";
 import Hero from "@/app/about-me/_components/hero";
@@ -19,18 +20,11 @@ export const metadata: Metadata = {
     "Employee Behaviour",
   ],
   openGraph: {
+    images: [OG_IMAGE],
     title: "About Me - Yasin Rofcanin",
     description:
       "Learn more about Yasin Rofcanin, Professor of Organisational Behaviour at University of Bath.",
     url: "/about-me",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "About Me - Yasin Rofcanin",
-      },
-    ],
   },
   alternates: {
     canonical: "/about-me",

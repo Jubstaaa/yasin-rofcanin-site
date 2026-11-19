@@ -9,19 +9,25 @@
         "start": "next start",
         "lint": "eslint .",
         "typecheck": "tsc --noEmit",
-        "audit": "bun audit --audit-level=high"
+        "audit": "bun audit --audit-level=high",
+        "test": "vitest run --project unit",
+        "test:build": "vitest run --project build"
     },
     "dependencies": {
         "clsx": "^2.1.1",
         "framer-motion": "^14.14.0",
+        "lucide-react": "^1.76.0",
         "next": "^16.4.6",
         "react": "^19.3.1",
         "react-dom": "^19.3.1",
+        "react-lite-youtube-embed": "^3.7.0",
         "swiper": "^14.4.0",
         "tailwind-merge": "^3.7.0"
     },
     "devDependencies": {
-        "@iconify/react": "^6.0.4",
+        "@iconify-json/carbon": "^1.2.30",
+        "@iconify-json/mdi": "^1.2.3",
+        "@iconify/utils": "^3.1.7",
         "@tailwindcss/postcss": "^4.3.5",
         "@tailwindcss/typography": "^0.5.20",
         "@types/node": "^26.6.6",
@@ -32,7 +38,8 @@
         "eslint-config-next": "^16.4.6",
         "postcss": "^8.5.33",
         "tailwindcss": "^4.3.5",
-        "typescript": "npm:@typescript/typescript6@^6.0.2"
+        "typescript": "npm:@typescript/typescript6@^6.0.2",
+        "vitest": "^5.1.1"
     },
     "overrides": {
         "postcss": "^8.5.31",

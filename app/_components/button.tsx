@@ -1,12 +1,11 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { Icon } from "@iconify/react";
 import { cn } from "@/lib/cn";
 
 interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;
-  icon?: string;
+  icon?: React.ReactNode;
   children?: React.ReactNode;
   size?: "xs" | "sm" | "md" | "lg";
   href?: string;
@@ -48,7 +47,7 @@ function Button({
   const content = (
     <>
       {children}
-      {icon && <Icon icon={icon} className="w-3.5 lg:w-5 h-3.5 lg:h-5" />}
+      {icon}
     </>
   );
 
@@ -65,6 +64,7 @@ function Button({
       <Link
         href={href}
         target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : undefined}
         className={className}
         onClick={handleClick}
       >

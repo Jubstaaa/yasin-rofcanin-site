@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og-image";
 import type { Metadata } from "next";
 import Footer from "@/app/_components/footer";
 import ScrollToTopButton from "@/app/_components/scroll-to-top-button";
@@ -18,6 +19,31 @@ const rancho = Rancho({
   display: "swap",
   weight: "400",
 });
+
+const CDN = "https://yasinrofcanin.fra1.cdn.digitaloceanspaces.com";
+
+// A static export cannot mint nonces and Next inlines its bootstrap scripts,
+// hence 'unsafe-inline'. Every other origin is listed: the image CDN, YouTube
+// thumbnails and the no-cookie player behind the video facade, the Elfsight
+// LinkedIn feed on /keynote-talks, and the Web Analytics beacon Cloudflare
+// injects at the edge. Headers a meta tag cannot
+// carry (HSTS, frame-ancestors, nosniff) belong to the proxy.
+const ELFSIGHT = "https://*.elfsight.com https://*.elfsightcdn.com";
+
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com ${ELFSIGHT}`,
+  "style-src 'self' 'unsafe-inline'",
+  `img-src 'self' data: ${CDN} https://i.ytimg.com https://media.licdn.com ${ELFSIGHT}`,
+  `media-src 'self' ${CDN}`,
+  `font-src 'self' ${ELFSIGHT}`,
+  `connect-src 'self' https://cloudflareinsights.com ${ELFSIGHT}`,
+  "frame-src https://www.youtube-nocookie.com",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
 
 export const metadata: Metadata = {
   title: {
@@ -48,11 +74,13 @@ export const metadata: Metadata = {
   // Was pointed at the apex, which made every page canonicalise to a
   // yasinrofcanin.com URL that returns 404 — the apex is a single-page site and
   // has no /about-me, /publications or /contact.
+  referrer: "strict-origin-when-cross-origin",
   metadataBase: new URL("https://beta.yasinrofcanin.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
+    images: [OG_IMAGE],
     type: "website",
     locale: "en_US",
     url: "/",
@@ -60,21 +88,13 @@ export const metadata: Metadata = {
     description:
       "Professor of Organisational Behaviour at University of Bath. Research on flexible work practices, proactive employee behaviours, and work-family enrichment.",
     siteName: "Yasin Rofcanin",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Yasin Rofcanin - Professor of Organisational Behaviour",
-      },
-    ],
   },
   twitter: {
+    images: [OG_IMAGE.url],
     card: "summary_large_image",
     title: "Yasin Rofcanin - Professor of Organisational Behaviour",
     description:
       "Professor of Organisational Behaviour at University of Bath. Research on flexible work practices, proactive employee behaviours, and work-family enrichment.",
-    images: ["/images/og-image.jpg"],
   },
   // This is the beta and it must stay out of search results: it is a
   // near-duplicate of yasinrofcanin.com and would compete with it for the same
@@ -100,12 +120,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {process.env.NODE_ENV === "production" && (
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content={CONTENT_SECURITY_POLICY}
+          />
+        )}
+      </head>
       <body className={`${raleway.variable} ${rancho.variable} antialiased`}>
-        <main>
-          <Header />
-          {children}
-          <Footer />
-        </main>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:shadow"
+        >
+          Skip to content
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
         <ScrollToTopButton />
       </body>
     </html>

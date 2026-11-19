@@ -388,7 +388,7 @@ export const publicationCategories = [
         "name": "How do flexibility i‐deals relate to work performance? Exploring the roles of family performance and organizational context.",
         "description": null,
         "date": new Date("2018-12-01T12:00:00"),
-        "link": "hhttps://psycnet.apa.org/record/2017-24675-001",
+        "link": "https://psycnet.apa.org/record/2017-24675-001",
         "authors": [
           "Yasin Rofcanin",
           "Aykut Berber",
@@ -753,7 +753,7 @@ export const publications = [
     "name": "How do flexibility i‐deals relate to work performance? Exploring the roles of family performance and organizational context.",
     "description": null,
     "date": new Date("2018-12-01T12:00:00"),
-    "link": "hhttps://psycnet.apa.org/record/2017-24675-001",
+    "link": "https://psycnet.apa.org/record/2017-24675-001",
     "authors": [
       "Yasin Rofcanin",
       "Aykut Berber",
@@ -774,7 +774,7 @@ export const publications = [
           "name": "How do flexibility i‐deals relate to work performance? Exploring the roles of family performance and organizational context.",
           "description": null,
           "date": new Date("2018-12-01T12:00:00"),
-          "link": "hhttps://psycnet.apa.org/record/2017-24675-001",
+          "link": "https://psycnet.apa.org/record/2017-24675-001",
           "authors": [
             "Yasin Rofcanin",
             "Aykut Berber",
@@ -828,7 +828,7 @@ export const publications = [
           "name": "How do flexibility i‐deals relate to work performance? Exploring the roles of family performance and organizational context.",
           "description": null,
           "date": new Date("2018-12-01T12:00:00"),
-          "link": "hhttps://psycnet.apa.org/record/2017-24675-001",
+          "link": "https://psycnet.apa.org/record/2017-24675-001",
           "authors": [
             "Yasin Rofcanin",
             "Aykut Berber",
@@ -867,6 +867,7 @@ export const videos = [
     "descriptionHtml": "<p>Here, my talk focuses on how companies and organisations can implement idiosyncratic deals in a fair and effective way. From <a href=\"https://researchportal.bath.ac.uk/en/publications/co-worker-reactions-to-i-deals-through-the-lens-of-social-compari\" target=\"_blank\" rel=\"noreferrer\"><em>our published paper</em></a> at Human Relations.</p>",
     "link": null,
     "youtubeId": "bun72cIXHd0",
+    "title": "Co-worker reactions to idiosyncratic deals",
     "media": null
   },
   {
@@ -874,6 +875,7 @@ export const videos = [
     "descriptionHtml": "<p>New ways of working and flexibility.</p>",
     "link": null,
     "youtubeId": "W3GoTvGvVMM",
+    "title": "New ways of working and flexibility",
     "media": null
   },
   {
@@ -881,6 +883,7 @@ export const videos = [
     "descriptionHtml": "<p>Women and leadership talk. A key take away from my talk.</p>",
     "link": null,
     "youtubeId": "C-aPws4MIoc",
+    "title": "Women and leadership",
     "media": null
   },
   {
@@ -901,7 +904,7 @@ export const videos = [
   {
     "id": "693d48415f46f8960a552c3b",
     "descriptionHtml": "<p>AI &amp; The Future of Work: Dr Margaret Heffernan and Prof Yasin Rofcanin</p>",
-    "link": "",
+    "link": null,
     "youtubeId": "VQjoKiA70aU",
     "media": null
   }

@@ -63,7 +63,7 @@ export default function EditorialRoles() {
                   height={500}
                   className="w-48 md:w-64 lg:w-80 xl:w-96 object-contain transition-transform group-hover:scale-105"
                 />
-                <div className="text-xs text-center text-hover underline opacity-80 group-hover:opacity-100">
+                <div className="text-xs text-center text-hover underline">
                   Human Relations Editorial Team
                 </div>
               </Link>
@@ -103,7 +103,7 @@ export default function EditorialRoles() {
                   height={500}
                   className="w-48 md:w-64 lg:w-80 xl:w-96 object-contain transition-transform group-hover:scale-105"
                 />
-                <div className="text-xs text-center text-hover underline opacity-80 group-hover:opacity-100">
+                <div className="text-xs text-center text-hover underline">
                   Journal of Management Studies Editorial Team
                 </div>
               </Link>

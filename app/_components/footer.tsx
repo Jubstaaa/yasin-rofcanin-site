@@ -1,23 +1,8 @@
+import ContentIcon from "@/app/_components/content-icon";
 import { profile, socials } from "@/lib/content";
 import React from "react";
-import { Icon } from "@iconify/react";
 import Link from "next/link";
-import { MenuItem } from "./header";
-
-export const menus: MenuItem[] = [
-  { name: "Homepage", href: "/" },
-  { name: "About Me", href: "/about-me" },
-  { name: "Keynote Talks", href: "/keynote-talks" },
-  {
-    name: "Future of Work",
-    href: "https://www.bath.ac.uk/research-centres/future-of-work-fow-research-centre/",
-    target: "_blank",
-  },
-  { name: "Publications", href: "/publications" },
-  { name: "Yasin's Team", href: "/yasin-s-team" },
-  { name: "Opinions", href: "/opinions" },
-  { name: "Contact", href: "/contact" },
-];
+import { NAV_LINKS } from "./nav-links";
 
 function Footer() {
   const user = profile;
@@ -30,18 +15,22 @@ function Footer() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest uppercase text-primary mb-3 md:mb-4 lg:mb-6 text-center">
             {user?.firstName} {user?.lastName}
           </h2>
-          <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-12">
-            {menus.map((menu, i) => (
+          <nav
+            aria-label="Footer"
+            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-12"
+          >
+            {NAV_LINKS.map((menu) => (
               <Link
-                key={i}
+                key={menu.href}
                 href={menu.href}
                 className="text-sm md:text-base lg:text-lg font-medium text-primary hover:text-hover transition-all duration-300 text-center whitespace-nowrap"
-                target={menu.target}
+                target={menu.external ? "_blank" : undefined}
+                rel={menu.external ? "noopener noreferrer" : undefined}
               >
                 {menu.name}
               </Link>
             ))}
-          </div>
+          </nav>
           <div className="flex flex-row flex-wrap items-center justify-center gap-4 md:gap-5 lg:gap-6 mt-2 md:mt-3 lg:mt-4">
             {socials.map((s) => (
               <Link
@@ -52,7 +41,7 @@ function Footer() {
                 aria-label={s.name}
                 rel="noopener noreferrer"
               >
-                <Icon icon={s.icon} className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
+                <ContentIcon name={s.icon} className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
               </Link>
             ))}
           </div>

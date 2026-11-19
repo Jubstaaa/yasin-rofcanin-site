@@ -1,8 +1,9 @@
+import { OG_IMAGE } from "@/lib/og-image";
+import { ArrowRight, FileText, Newspaper } from "lucide-react";
 import { blogs } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
 import PageHero from "@/app/_components/page-hero";
-import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,21 +21,14 @@ export const metadata: Metadata = {
     "Academic Insights",
   ],
   openGraph: {
+    images: [OG_IMAGE],
     title: "Blog - Yasin Rofcanin",
     description:
       "Explore Yasin Rofcanin's blog posts and external publications on organisational behaviour and research.",
-    url: "/blog",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Blog - Yasin Rofcanin",
-      },
-    ],
+    url: "/opinions",
   },
   alternates: {
-    canonical: "/blog",
+    canonical: "/opinions",
   },
 };
 
@@ -60,10 +54,9 @@ function BlogPage() {
 
           {externalBlogs.length === 0 ? (
             <div className="text-gray-400 italic text-center py-12 bg-gray-50 rounded-lg">
-              <Icon
-                icon="mdi:file-document-outline"
+              <FileText
                 className="w-12 h-12 mx-auto mb-4 opacity-50"
-              />
+              aria-hidden />
               <p>No media appearances found.</p>
             </div>
           ) : (
@@ -117,10 +110,9 @@ function BlogPage() {
                         className="inline-flex items-center gap-2 text-hover font-semibold hover:underline text-sm mt-3 group/link"
                       >
                         READ MORE
-                        <Icon
-                          icon="mdi:arrow-right"
+                        <ArrowRight
                           className="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
-                        />
+                        aria-hidden />
                       </Link>
                     )}
                   </div>
@@ -139,10 +131,9 @@ function BlogPage() {
 
           {personalBlogs.length === 0 ? (
             <div className="text-gray-400 italic text-center py-12 bg-gray-50 rounded-lg">
-              <Icon
-                icon="mdi:blog-outline"
+              <Newspaper
                 className="w-12 h-12 mx-auto mb-4 opacity-50"
-              />
+              aria-hidden />
               <p>No oriented outlets found.</p>
             </div>
           ) : (
@@ -189,14 +180,13 @@ function BlogPage() {
                       )}
                     </div>
                     <Link
-                      href={`/blog/${blog.slug}`}
+                      href={`/opinions/${blog.slug}`}
                       className="inline-flex items-center gap-2 text-hover font-semibold hover:underline text-sm mt-3 group/link"
                     >
                       READ MORE
-                      <Icon
-                        icon="mdi:arrow-right"
+                      <ArrowRight
                         className="w-4 h-4 group-hover/link:translate-x-1 transition-transform"
-                      />
+                      aria-hidden />
                     </Link>
                   </div>
                 </article>

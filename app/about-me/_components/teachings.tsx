@@ -1,7 +1,7 @@
+import ContentIcon from "@/app/_components/content-icon";
 import { teachings } from "@/lib/content";
 import React from "react";
 import AnimatedText from "@/app/_components/animated-text";
-import { Icon } from "@iconify/react";
 import Image from "next/image";
 
 function Teachings() {
@@ -26,7 +26,7 @@ function Teachings() {
                 className="object-cover"
               />
             </div>
-            <Icon icon={teaching.icon} className="w-10 h-10 md:w-12 md:h-12 relative" />
+            <ContentIcon name={teaching.icon} className="w-10 h-10 md:w-12 md:h-12 relative" />
             <h3 className="text-lg md:text-xl font-medium relative">{teaching.name}</h3>
             <span className="text-secondary text-sm md:text-base relative">{teaching.level}</span>
           </div>

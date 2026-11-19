@@ -1,9 +1,10 @@
+import { OG_IMAGE } from "@/lib/og-image";
+import { ArrowLeft } from "lucide-react";
 import { blogs } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageHero from "@/app/_components/page-hero";
-import { Icon } from "@iconify/react";
 import Link from "next/link";
 import RichText from "@/app/_components/rich-text";
 
@@ -53,36 +54,22 @@ export async function generateMetadata({
     openGraph: {
       title: blog.name,
       description,
-      url: `https://yasinrofcanin.com/blog/${slug}`,
+      url: `/opinions/${slug}`,
       type: "article",
       publishedTime: blog.date?.toISOString(),
       authors: blog.authors,
       images: blog.media?.url
-        ? [
-            {
-              url: blog.media.url,
-              width: 1200,
-              height: 630,
-              alt: blog.media.alt || blog.name,
-            },
-          ]
-        : [
-            {
-              url: "/images/og-image.jpg",
-              width: 1200,
-              height: 630,
-              alt: blog.name,
-            },
-          ],
+        ? [{ url: blog.media.url, alt: blog.media.alt || blog.name }]
+        : [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: blog.name,
       description,
-      images: blog.media?.url ? [blog.media.url] : ["/images/og-image.jpg"],
+      images: [blog.media?.url ?? OG_IMAGE.url],
     },
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `/opinions/${slug}`,
     },
   };
 }
@@ -143,10 +130,10 @@ async function BlogDetailPage({
           {/* Back to Blog */}
           <div className="mt-16 pt-8 border-t border-gray-200">
             <Link
-              href="/blog"
+              href="/opinions"
               className="inline-flex items-center gap-2 text-hover font-semibold hover:underline"
             >
-              <Icon icon="mdi:arrow-left" className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4" aria-hidden />
               Back to Blog
             </Link>
           </div>

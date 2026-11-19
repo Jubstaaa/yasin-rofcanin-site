@@ -1,7 +1,7 @@
+import { ArrowRight } from "lucide-react";
 import { publications } from "@/lib/content";
 import Link from "next/link";
 import React from "react";
-import { Icon } from "@iconify/react";
 import Button from "@/app/_components/button";
 import AnimatedText from "@/app/_components/animated-text";
 
@@ -28,7 +28,7 @@ function Publications() {
             <p className="text-xs md:text-sm text-secondary">{item.name}</p>
             <div className="flex gap-1 text-hover text-xs md:text-sm font-bold items-center -left-2 opacity-0 group-hover:left-0 group-hover:opacity-100 transition-all duration-300 relative">
               READ MORE
-              <Icon icon="mdi:arrow-right" className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4" aria-hidden />
             </div>
             <hr className="absolute left-0 bottom-10 md:bottom-12 w-24 md:w-32 h-[1px] text-hover group-hover:w-0 transition-all duration-300" />
           </Link>

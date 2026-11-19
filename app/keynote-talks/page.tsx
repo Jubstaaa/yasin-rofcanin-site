@@ -1,7 +1,7 @@
+import { ArrowRight } from "lucide-react";
 import { inviteImages, keynoteTalks } from "@/lib/content";
 import React from "react";
 import PageHero from "@/app/_components/page-hero";
-import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Script from "next/script";
 import Invite from "@/app/_components/invite";
@@ -50,7 +50,7 @@ export default function KeynoteTalksPage() {
                       className="text-hover font-semibold text-sm md:text-base flex items-center gap-2 hover:underline w-fit"
                     >
                       View Details{" "}
-                      <Icon icon="mdi:arrow-right" className="w-4 h-4 md:w-5 md:h-5" />
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5" aria-hidden />
                     </Link>
                   )}
                 </div>

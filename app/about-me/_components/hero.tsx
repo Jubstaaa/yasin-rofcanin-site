@@ -1,8 +1,8 @@
+import ContentIcon from "@/app/_components/content-icon";
 import { futureOfWorkImages, profile, socials } from "@/lib/content";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 
 function Hero() {
   const user = profile;
@@ -67,7 +67,7 @@ function Hero() {
               target="_blank"
               className="!text-primary hover:!text-hover"
             >
-              <Icon className="w-6 h-6 md:w-7 md:h-7" icon={social.icon} />
+              <ContentIcon name={social.icon} className="w-6 h-6 md:w-7 md:h-7" />
             </Link>
           ))}
         </div>

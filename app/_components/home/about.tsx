@@ -36,18 +36,9 @@ function About({
             className="absolute right-0 bottom-0 w-[150px] h-[220px] md:w-[200px] md:h-[300px] lg:w-[220px] lg:h-[320px] bg-neutral-100"
             style={{ zIndex: 1 }}
           />
-          {/* Animated image */}
-          <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.1,
-              type: "spring",
-              stiffness: 60,
-            }}
-            className="relative z-10 w-full h-full"
-          >
+          {/* Not animated: this image is the LCP element, and an entrance
+              animation from opacity 0 held it back by over a second. */}
+          <div className="relative z-10 w-full h-full">
             <Image
               src={PROFILE_IMAGE_URL}
               alt="Yasin Rofcanin"
@@ -56,7 +47,7 @@ function About({
               priority
               className="w-full h-full object-cover"
             />
-          </motion.div>
+          </div>
         </div>
         {/* Right: Content */}
         <div className="relative z-10 flex-1 flex flex-col justify-center gap-4 md:gap-6 lg:gap-8 lg:pl-8 text-center lg:text-left">
