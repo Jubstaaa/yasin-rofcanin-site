@@ -1,8 +1,8 @@
 "use client";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useRef } from "react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Icon } from "@iconify/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -60,10 +60,9 @@ function MediaSlider({ videos }: { videos: React.ReactNode[] }) {
           tabIndex={0}
           style={{ boxShadow: "0 2px 8px rgba(34, 81, 144, 0.13)" }}
         >
-          <Icon
-            icon="ic:round-arrow-back-ios-new"
+          <ChevronLeft
             className={inlineArrowIconClass}
-          />
+          aria-hidden />
         </button>
 
         {/* Pagination Dots Container */}
@@ -77,10 +76,9 @@ function MediaSlider({ videos }: { videos: React.ReactNode[] }) {
           tabIndex={0}
           style={{ boxShadow: "0 2px 8px rgba(34, 81, 144, 0.13)" }}
         >
-          <Icon
-            icon="ic:round-arrow-forward-ios"
+          <ChevronRight
             className={inlineArrowIconClass}
-          />
+          aria-hidden />
         </button>
       </div>
     </div>

@@ -1,31 +1,12 @@
 "use client";
+import { Menu } from "lucide-react";
 import React, { useState } from "react";
-import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/cn";
+import { NAV_LINKS } from "./nav-links";
 import Image from "next/image";
 
-export interface MenuItem {
-  name: string;
-  href: string;
-  target?: "_blank";
-}
-
-export const menus: MenuItem[] = [
-  { name: "Homepage", href: "/" },
-  { name: "About Me", href: "/about-me" },
-  { name: "Keynote Talks", href: "/keynote-talks" },
-  {
-    name: "Future of Work",
-    href: "https://www.bath.ac.uk/research-centres/future-of-work-fow-research-centre/",
-    target: "_blank",
-  },
-  { name: "Publications", href: "/publications" },
-  { name: "Yasin's Team", href: "/yasin-s-team" },
-  { name: "Opinions", href: "/opinions" },
-  { name: "Contact", href: "/contact" },
-];
 
 function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -48,47 +29,59 @@ function Header() {
               alt="Yasin Rofcanin Site Logo"
             />
           </Link>
-          <div className="hidden lg:flex items-center justify-center flex-1 gap-3 text-primary font-medium">
-            {menus.map((menu, i) => (
+          <nav
+            aria-label="Main"
+            className="hidden lg:flex items-center justify-center flex-1 gap-3 text-primary font-medium"
+          >
+            {NAV_LINKS.map((menu) => (
               <Link
-                key={i}
+                key={menu.href}
                 className="p-4 transition-all duration-300 hover:text-hover text-base whitespace-nowrap font-medium"
                 href={menu.href}
-                target={menu.target}
+                target={menu.external ? "_blank" : undefined}
+                rel={menu.external ? "noopener noreferrer" : undefined}
               >
                 {menu.name}
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
 
-        <Icon
+        <button
+          type="button"
+          aria-label="Menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
           onClick={() => setIsOpen((state) => !state)}
-          icon="mdi:menu"
-          className="lg:hidden w-7 h-7 md:w-8 md:h-8 cursor-pointer mr-2"
-        />
+          className="lg:hidden mr-2 cursor-pointer"
+        >
+          <Menu aria-hidden className="w-7 h-7 md:w-8 md:h-8" />
+        </button>
       </div>
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <motion.nav
+            id="mobile-menu"
+            aria-label="Main"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="absolute w-full top-full left-0 flex flex-col items-center p-0 border border-divider bg-white rounded-t-none backdrop-blur-[10px] z-20"
           >
-            {menus.map((menu, i) => (
+            {NAV_LINKS.map((menu) => (
               <Link
-                key={i}
+                key={menu.href}
                 href={menu.href}
                 className="w-full text-center py-3 text-base md:text-lg font-medium transition-all duration-300 hover:text-[#475569] active:opacity-50"
                 onClick={() => setIsOpen(false)}
-                target={menu.target}
+                target={menu.external ? "_blank" : undefined}
+                rel={menu.external ? "noopener noreferrer" : undefined}
               >
                 {menu.name}
               </Link>
             ))}
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>

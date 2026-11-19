@@ -1,8 +1,8 @@
 "use client";
+import { ArrowUp } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icon } from "@iconify/react";
 
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,9 +38,10 @@ export default function ScrollToTopButton() {
             scale: 0.9,
             transition: { duration: 0.1 },
           }}
-          className="cursor-pointer fixed bottom-3 lg:bottom-6 right-3 lg:right-0 p-2 lg:p-3 bg-hover text-white focus:outline-none z-50"
+          className="cursor-pointer fixed bottom-3 lg:bottom-6 right-3 lg:right-0 p-2 lg:p-3 bg-hover text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary z-50"
+          aria-label="Scroll to top"
         >
-          <Icon icon="lucide:arrow-up" className="w-4 lg:w-6 h-4 lg:h-6" />
+          <ArrowUp aria-hidden className="w-4 lg:w-6 h-4 lg:h-6" />
         </motion.button>
       )}
     </AnimatePresence>

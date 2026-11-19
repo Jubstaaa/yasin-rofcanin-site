@@ -1,6 +1,7 @@
 import { videos } from "@/lib/content";
 import React from "react";
 import MediaSlider from "./media-slider";
+import YouTubeFacade from "./youtube-facade";
 import RichText from "@/app/_components/rich-text";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,14 +17,22 @@ function Media() {
           videos={videos.map((item) => (
             <div key={item.id} className="flex flex-col gap-3 md:gap-4 lg:gap-5">
               {item.youtubeId && (
-                <iframe
-                  className="aspect-video w-full rounded-lg"
-                  src={`https://www.youtube.com/embed/${item.youtubeId}`}
-                  allowFullScreen
-                />
+                <div className="overflow-hidden rounded-lg">
+                  <YouTubeFacade
+                    id={item.youtubeId}
+                    title={item.title ?? "Talk by Yasin Rofcanin"}
+                    noCookie
+                    webp
+                  />
+                </div>
               )}
               {item.link && item.media && (
-                <Link href={item.link} target="_blank" className="w-full">
+                <Link
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
                   <Image
                     src={item.media.url}
                     alt={item.media.alt}

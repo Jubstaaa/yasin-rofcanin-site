@@ -1,8 +1,10 @@
+import { OG_IMAGE } from "@/lib/og-image";
+import { Mail } from "lucide-react";
+import ContentIcon from "@/app/_components/content-icon";
 import { profile, socials } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
 import PageHero from "@/app/_components/page-hero";
-import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedText from "@/app/_components/animated-text";
@@ -21,18 +23,11 @@ export const metadata: Metadata = {
     "Academic Inquiries",
   ],
   openGraph: {
+    images: [OG_IMAGE],
     title: "Contact - Yasin Rofcanin",
     description:
       "Get in touch with Yasin Rofcanin for research collaborations, speaking engagements, or academic inquiries.",
     url: "/contact",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Contact - Yasin Rofcanin",
-      },
-    ],
   },
   alternates: {
     canonical: "/contact",
@@ -81,7 +76,7 @@ function page() {
               <div className="relative z-10 text-white p-6 md:p-8 lg:p-10 flex flex-col gap-4 md:gap-5 lg:gap-6">
                 <div>
                   <div className="flex items-center gap-2 md:gap-3 mb-2">
-                    <Icon icon="mdi:email-outline" className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                    <Mail className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" aria-hidden />
                     <span className="font-semibold text-base md:text-lg">Email</span>
                   </div>
                   <Link
@@ -94,7 +89,7 @@ function page() {
                 <div className="flex gap-3 md:gap-4 mt-2 md:mt-3">
                   {socials.map((social) => (
                     <Link href={social.link} key={social.id} target="_blank">
-                      <Icon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" icon={social.icon} />
+                      <ContentIcon name={social.icon} className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                     </Link>
                   ))}
                 </div>
@@ -117,7 +112,7 @@ function page() {
             href={`mailto:${user?.email}`}
             className="inline-flex items-center gap-2 md:gap-3 rounded-lg bg-hover px-5 md:px-6 py-3 text-white text-sm md:text-base"
           >
-            <Icon icon="mdi:email-outline" className="w-5 h-5 md:w-6 md:h-6" />
+            <Mail className="w-5 h-5 md:w-6 md:h-6" aria-hidden />
             {user?.email}
           </Link>
         </div>

@@ -6,7 +6,8 @@
   --color-divider: #e5e5e5;
   --color-primary: #212121;
   --color-secondary: #616161;
-  --color-hover: #1c8c52;
+  /* #1c8c52 measured 4.26:1 on white; this clears 4.5:1 for small text. */
+  --color-hover: #167a46;
   --font-primary: var(--font-raleway);
 }
 

@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og-image";
 import { futureOfWorkImages, inviteImages, profile } from "@/lib/content";
 import type { Metadata } from "next";
 import React from "react";
@@ -23,18 +24,11 @@ export const metadata: Metadata = {
     "Work-Family Balance",
   ],
   openGraph: {
+    images: [OG_IMAGE],
     title: "Yasin Rofcanin - Professor of Organisational Behaviour",
     description:
       "Welcome to Yasin Rofcanin's academic website. Professor of Organisational Behaviour at University of Bath.",
     url: "/",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Yasin Rofcanin - Professor of Organisational Behaviour",
-      },
-    ],
   },
   alternates: {
     canonical: "/",

@@ -28,9 +28,12 @@ jobs:
             - run: bun install --frozen-lockfile
             - run: bun run lint
             - run: bun run typecheck
+            - run: bun run test
             - run: bun run audit
             # `output: "export"` writes plain files to out/: no server to run.
             - run: bun run build
+            # Internal links, og:image and the video facade, checked on the built files.
+            - run: bun run test:build
             # If the CDN base ever falls out of the build, every image 404s while
             # the build still looks perfectly healthy.
             - name: Sanity-check the export

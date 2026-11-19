@@ -1,9 +1,10 @@
+import { OG_IMAGE } from "@/lib/og-image";
+import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 import { books, publicationCategories, socials } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/app/_components/page-hero";
-import { Icon } from "@iconify/react";
 import Button from "@/app/_components/button";
 import Image from "next/image";
 
@@ -22,18 +23,11 @@ export const metadata: Metadata = {
     "Academic Journals",
   ],
   openGraph: {
+    images: [OG_IMAGE],
     title: "Publications - Yasin Rofcanin",
     description:
       "Explore Yasin Rofcanin's academic publications and research papers in organisational behaviour.",
     url: "/publications",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Publications - Yasin Rofcanin",
-      },
-    ],
   },
   alternates: {
     canonical: "/publications",
@@ -76,7 +70,7 @@ function PublicationsPage() {
                   href={googleScholar.link}
                   target="_blank"
                   size="sm"
-                  icon="mdi:arrow-right"
+                  icon={<ArrowRight aria-hidden className="w-3.5 lg:w-5 h-3.5 lg:h-5" />}
                 >
                   Google Scholar citations
                 </Button>
@@ -87,7 +81,7 @@ function PublicationsPage() {
                 size="sm"
               >
                 All Publications on Bath Portal
-                <Icon icon="mdi:external-link" className="w-5 h-5 ml-2" />
+                <ExternalLink className="w-5 h-5 ml-2" aria-hidden />
               </Button>
             </div>
           </div>
@@ -131,8 +125,9 @@ function PublicationsPage() {
                           target="_blank"
                           className="text-hover text-xs font-bold flex items-center gap-2 hover:text-black w-fit transition-all duration-300"
                         >
-                          READ MORE{" "}
-                          <Icon icon="mdi:arrow-right" className="w-3 h-3" />
+                          READ MORE
+                          <span className="sr-only">: {pub.name}</span>{" "}
+                          <ArrowRight className="w-3 h-3" aria-hidden />
                         </Link>
                       </div>
                     ))
@@ -162,6 +157,7 @@ function PublicationsPage() {
                   <Link
                     href={book.link}
                     target="_blank"
+                    aria-label={book.name}
                     className="flex-shrink-0 w-28 md:w-36 lg:w-40 xl:w-48 h-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-200 relative shadow-sm group-hover:shadow-md transition-all duration-300 aspect-[3/4]"
                   >
                     {book.media ? (
@@ -173,10 +169,9 @@ function PublicationsPage() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-50 text-gray-300">
-                        <Icon
-                          icon="mdi:book-open-page-variant"
+                        <BookOpen
                           className="w-6 h-6 md:w-8 md:h-8"
-                        />
+                        aria-hidden />
                       </div>
                     )}
                   </Link>
@@ -184,18 +179,19 @@ function PublicationsPage() {
                   {/* Content */}
                   <div className="flex flex-col gap-2">
                     <Link href={book.link} target="_blank">
-                      <h4 className="font-medium text-base md:text-lg leading-snug group-hover:text-hover transition-colors line-clamp-2 md:line-clamp-3">
+                      <h3 className="font-medium text-base md:text-lg leading-snug group-hover:text-hover transition-colors line-clamp-2 md:line-clamp-3">
                         {book.name}
-                      </h4>
+                      </h3>
                     </Link>
 
                     <Link
                       href={book.link}
                       target="_blank"
-                      className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1 hover:text-hover transition-colors w-fit"
+                      className="text-xs font-bold text-gray-600 uppercase tracking-wider flex items-center gap-1 hover:text-hover transition-colors w-fit"
                     >
-                      View Book{" "}
-                      <Icon icon="mdi:arrow-right" className="w-3 h-3" />
+                      View Book
+                      <span className="sr-only">: {book.name}</span>{" "}
+                      <ArrowRight className="w-3 h-3" aria-hidden />
                     </Link>
                   </div>
                 </div>
