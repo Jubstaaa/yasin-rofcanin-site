@@ -8,7 +8,7 @@ The site was originally backed by Payload CMS on MongoDB. The CMS has been remov
 
 - Next.js 15 (App Router, `output: "export"`)
 - React 19, TypeScript
-- Tailwind CSS 4, Radix UI, Framer Motion, Swiper, cobe
+- Tailwind CSS 4, Radix UI, Framer Motion, Swiper
 - Bun
 
 ## Running it
