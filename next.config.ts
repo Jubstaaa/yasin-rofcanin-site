@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   // more: the CMS, the database and the contact form's server action all left
   // with Payload.
   output: "export",
-  experimental: {
-    reactCompiler: false,
-  },
   images: {
     // A static export has no /_next/image optimizer. The sources were already
     // webp in the CMS, so serving them untouched costs nothing.
