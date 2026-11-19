@@ -1,16 +1,16 @@
+import { blogs } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
-import { BlogService } from "@/lib/services";
 import { notFound } from "next/navigation";
-import PageHero from "../../components/ui/PageHero";
+import PageHero from "@/app/_components/page-hero";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import RichText from "../../components/ui/RichText";
+import RichText from "@/app/_components/rich-text";
 
 // Required by `output: "export"` — a dynamic route has to declare every page it
 // produces, since there is no server left to render an unknown slug on demand.
-export async function generateStaticParams() {
-  const posts = await BlogService.findMany({ where: { type: "personal" } });
+export function generateStaticParams() {
+  const posts = blogs.filter((blog) => blog.type === "personal");
   return posts
     .filter((post) => post.slug)
     .map((post) => ({ slug: String(post.slug) }));
@@ -23,13 +23,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
-  const blog = await BlogService.findFirst({
-    where: {
-      slug: slug,
-      type: "personal",
-    },
-    include: { media: true },
-  });
+  const blog = blogs.find(
+    (post) => post.slug === slug && post.type === "personal"
+  );
 
   if (!blog) {
     return {
@@ -98,13 +94,9 @@ async function BlogDetailPage({
 }) {
   const { slug } = await params;
 
-  const blog = await BlogService.findFirst({
-    where: {
-      slug: slug,
-      type: "personal",
-    },
-    include: { media: true },
-  });
+  const blog = blogs.find(
+    (post) => post.slug === slug && post.type === "personal"
+  );
 
   if (!blog) {
     notFound();

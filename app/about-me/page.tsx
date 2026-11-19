@@ -1,11 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
-import Hero from "../components/about-us/Hero";
-import Teachings from "../components/about-us/Teachings";
-import Visitings from "../components/about-us/Visitings";
-// import EditorialRoles from "../components/landing/EditoralRoles";
-// import { FutureOfWorkImagesService } from "@/lib/services";
-// import FutureOfWorkImages from "../components/landing/FutureOfWork";
+import Hero from "@/app/about-me/_components/hero";
+import Teachings from "@/app/about-me/_components/teachings";
+import Visitings from "@/app/about-me/_components/visitings";
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -40,25 +37,12 @@ export const metadata: Metadata = {
   },
 };
 
-// const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
-//   select: {
-//     media: true,
-//   },
-// });
-
-async function page() {
+function page() {
   return (
     <>
       <Hero />
       <Visitings />
       <Teachings />
-      {/* <EditorialRoles />
-      <FutureOfWorkImages
-        images={futureOfWorkImages.map((item) => ({
-          src: item.media.url,
-          alt: item.media.alt,
-        }))}
-      /> */}
     </>
   );
 }

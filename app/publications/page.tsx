@@ -1,14 +1,10 @@
+import { books, publicationCategories, socials } from "@/lib/content";
 import React from "react";
 import type { Metadata } from "next";
-import {
-  BookService,
-  PublicationCategoryService,
-  SocialService,
-} from "@/lib/services";
 import Link from "next/link";
-import PageHero from "../components/ui/PageHero";
+import PageHero from "@/app/_components/page-hero";
 import { Icon } from "@iconify/react";
-import Button from "../components/ui/Button";
+import Button from "@/app/_components/button";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -44,18 +40,10 @@ export const metadata: Metadata = {
   },
 };
 
-async function PublicationsPage() {
-  const categories = await PublicationCategoryService.findMany({
-    include: { publications: true },
-  });
+function PublicationsPage() {
+  const categories = publicationCategories;
 
-  const books = await BookService.findMany({
-    include: {
-      media: true,
-    },
-  });
 
-  const socials = await SocialService.findMany();
   const googleScholar = socials.find((s) =>
     s.name.toLowerCase().includes("scholar")
   );

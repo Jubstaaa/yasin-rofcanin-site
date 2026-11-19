@@ -1,8 +1,8 @@
+import { profile, socials } from "@/lib/content";
 import React from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import { SocialService, profile } from "@/lib/services";
-import { MenuItem } from "./Header";
+import { MenuItem } from "./header";
 
 export const menus: MenuItem[] = [
   { name: "Homepage", href: "/" },
@@ -19,10 +19,9 @@ export const menus: MenuItem[] = [
   { name: "Contact", href: "/contact" },
 ];
 
-async function Footer() {
+function Footer() {
   const user = profile;
 
-  const socials = await SocialService.findMany();
 
   return (
     <>

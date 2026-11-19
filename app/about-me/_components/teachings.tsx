@@ -1,11 +1,10 @@
+import { teachings } from "@/lib/content";
 import React from "react";
-import AnimatedText from "../ui/AnimatedText";
-import { TeachingService } from "@/lib/services";
+import AnimatedText from "@/app/_components/animated-text";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 
-async function Teachings() {
-  const teachings = await TeachingService.findMany();
+function Teachings() {
 
   return (
     <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 items-center px-4">

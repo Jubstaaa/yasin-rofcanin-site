@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import AnimatedText from "../ui/AnimatedText";
+import AnimatedText from "@/app/_components/animated-text";
 import { motion } from "framer-motion";
 
 const PROFILE_IMAGE_URL =

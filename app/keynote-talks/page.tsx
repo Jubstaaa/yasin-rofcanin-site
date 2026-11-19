@@ -1,19 +1,14 @@
+import { inviteImages, keynoteTalks } from "@/lib/content";
 import React from "react";
-import { InviteImagesService, KeynoteTalkService } from "@/lib/services";
-import PageHero from "../components/ui/PageHero";
+import PageHero from "@/app/_components/page-hero";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Script from "next/script";
-import Invite from "../components/landing/Invite";
+import Invite from "@/app/_components/invite";
 
-export default async function KeynoteTalksPage() {
-  const talks = await KeynoteTalkService.findMany();
+export default function KeynoteTalksPage() {
+  const talks = keynoteTalks;
 
-  const inviteImages = await InviteImagesService.findMany({
-    select: {
-      media: true,
-    },
-  });
   return (
     <>
       <PageHero

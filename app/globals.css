@@ -1,7 +1,25 @@
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
-@config '../../tailwind.config.ts';
+
+@theme {
+  --color-divider: #e5e5e5;
+  --color-primary: #212121;
+  --color-secondary: #616161;
+  --color-hover: #1c8c52;
+  --font-primary: var(--font-raleway);
+}
+
+/* Centred, full width below 1200px, capped at 1200px above it. */
+@utility container {
+  margin-inline: auto;
+  @media (width >= 40rem) {
+    max-width: none;
+  }
+  @media (width >= 1200px) {
+    max-width: 1200px;
+  }
+}
 
 :root {
   --swiper-theme-color: #1c8c52;

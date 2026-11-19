@@ -1,11 +1,11 @@
+import { visitings } from "@/lib/content";
 import React from "react";
-import { VisitingService } from "@/lib/services";
-import { Accordion, AccordionItem } from "../ui/Accordion";
+import { Accordion, AccordionItem } from "./accordion";
 import Link from "next/link";
-import AnimatedText from "../ui/AnimatedText";
+import AnimatedText from "@/app/_components/animated-text";
 
-async function Visiting() {
-  const visitingPositions = await VisitingService.findMany();
+function Visiting() {
+  const visitingPositions = visitings;
 
   return (
     <div className="p-4 md:p-8 lg:p-12 xl:p-16">

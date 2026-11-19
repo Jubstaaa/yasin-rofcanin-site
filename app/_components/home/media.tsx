@@ -1,20 +1,11 @@
+import { videos } from "@/lib/content";
 import React from "react";
-import { VideoService } from "@/lib/services";
-import MediaSlider from "./MediaSlider";
-import RichText from "../ui/RichText";
+import MediaSlider from "./media-slider";
+import RichText from "@/app/_components/rich-text";
 import Link from "next/link";
 import Image from "next/image";
 
-async function Media() {
-  const videos = await VideoService.findMany({
-    select: {
-      id: true,
-      description: true,
-      youtubeId: true,
-      media: true,
-      link: true,
-    },
-  });
+function Media() {
 
   return (
     <div className="bg-[url('/images/bg-media.jpg')] bg-fixed bg-center pt-12 md:pt-16 lg:pt-24 pb-8 md:pb-10 lg:pb-12 -mb-8 md:-mb-10 lg:-mb-12">

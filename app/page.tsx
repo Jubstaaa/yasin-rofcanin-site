@@ -1,17 +1,13 @@
+import { futureOfWorkImages, inviteImages, profile } from "@/lib/content";
 import type { Metadata } from "next";
 import React from "react";
-import ImageSlider from "./components/landing/ImageSlider";
-import {
-  FutureOfWorkImagesService,
-  InviteImagesService,
-  profile,
-} from "@/lib/services";
-import Media from "./components/landing/Media";
-import Publications from "./components/landing/Publications";
-import EditorialRoles from "./components/landing/EditoralRoles";
-import About from "./components/landing/About";
-import Invite from "./components/landing/Invite";
-import FutureOfWork from "./components/landing/FutureOfWork";
+import ImageSlider from "@/app/_components/home/image-slider";
+import Media from "@/app/_components/home/media";
+import Publications from "@/app/_components/home/publications";
+import EditorialRoles from "@/app/_components/home/editorial-roles";
+import About from "@/app/_components/home/about";
+import Invite from "@/app/_components/invite";
+import FutureOfWork from "@/app/_components/home/future-of-work";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -45,20 +41,10 @@ export const metadata: Metadata = {
   },
 };
 
-async function page() {
+function page() {
   const user = profile;
 
-  const inviteImages = await InviteImagesService.findMany({
-    select: {
-      media: true,
-    },
-  });
 
-  const futureOfWorkImages = await FutureOfWorkImagesService.findMany({
-    select: {
-      media: true,
-    },
-  });
 
   const scholarStats = {
     citations: user?.scholarCitations || 0,
