@@ -1,146 +1,143 @@
-import { OG_IMAGE } from "@/lib/og-image";
-import { ArrowLeft } from "lucide-react";
-import { blogs } from "@/lib/content";
-import React from "react";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import PageHero from "@/app/_components/page-hero";
-import Link from "next/link";
-import RichText from "@/app/_components/rich-text";
+import type { Metadata } from 'next'
 
-// Required by `output: "export"` — a dynamic route has to declare every page it
-// produces, since there is no server left to render an unknown slug on demand.
-export function generateStaticParams() {
-  const posts = blogs.filter((blog) => blog.type === "personal");
-  return posts
-    .filter((post) => post.slug)
-    .map((post) => ({ slug: String(post.slug) }));
-}
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import React from 'react'
+
+import PageHero from '@/app/_components/page-hero'
+import RichText from '@/app/_components/rich-text'
+import { blogs } from '@/lib/content'
+import { OG_IMAGE } from '@/lib/og-image'
 
 export async function generateMetadata({
-  params,
+    params,
 }: {
-  params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params;
+    const { slug } = await params
 
-  const blog = blogs.find(
-    (post) => post.slug === slug && post.type === "personal"
-  );
+    const blog = blogs.find(
+        post => post.slug === slug && post.type === 'personal'
+    )
 
-  if (!blog) {
+    if (!blog) {
+        return {
+            description: 'The requested blog post could not be found.',
+            title: 'Blog Post Not Found',
+        }
+    }
+
+    const description =
+        blog.description ||
+        `Read ${blog.name} by ${blog.authors.join(', ')} on Yasin Rofcanin's blog.`
+
     return {
-      title: "Blog Post Not Found",
-      description: "The requested blog post could not be found.",
-    };
-  }
+        alternates: {
+            canonical: `/opinions/${slug}`,
+        },
+        authors: blog.authors.map(author => ({ name: author })),
+        description,
+        keywords: [
+            blog.name,
+            ...blog.authors,
+            'Yasin Rofcanin',
+            'Blog',
+            'Organisational Behaviour',
+            'Academic Research',
+        ],
+        openGraph: {
+            authors: blog.authors,
+            description,
+            images: blog.media.url
+                ? [{ alt: blog.media.alt || blog.name, url: blog.media.url }]
+                : [OG_IMAGE],
+            publishedTime: blog.date?.toISOString(),
+            title: blog.name,
+            type: 'article',
+            url: `/opinions/${slug}`,
+        },
+        title: blog.name,
+        twitter: {
+            card: 'summary_large_image',
+            description,
+            images: [blog.media.url],
+            title: blog.name,
+        },
+    }
+}
 
-  const description =
-    blog.description ||
-    `Read ${blog.name} by ${blog.authors?.join(", ")} on Yasin Rofcanin's blog.`;
-
-  return {
-    title: blog.name,
-    description,
-    keywords: [
-      blog.name,
-      ...(blog.authors || []),
-      "Yasin Rofcanin",
-      "Blog",
-      "Organisational Behaviour",
-      "Academic Research",
-    ],
-    authors: blog.authors?.map((author) => ({ name: author })),
-    openGraph: {
-      title: blog.name,
-      description,
-      url: `/opinions/${slug}`,
-      type: "article",
-      publishedTime: blog.date?.toISOString(),
-      authors: blog.authors,
-      images: blog.media?.url
-        ? [{ url: blog.media.url, alt: blog.media.alt || blog.name }]
-        : [OG_IMAGE],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: blog.name,
-      description,
-      images: [blog.media?.url ?? OG_IMAGE.url],
-    },
-    alternates: {
-      canonical: `/opinions/${slug}`,
-    },
-  };
+export function generateStaticParams() {
+    const posts = blogs.filter(blog => blog.type === 'personal')
+    return posts
+        .filter(post => post.slug)
+        .map(post => ({ slug: String(post.slug) }))
 }
 
 async function BlogDetailPage({
-  params,
+    params,
 }: {
-  params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string }>
 }) {
-  const { slug } = await params;
+    const { slug } = await params
 
-  const blog = blogs.find(
-    (post) => post.slug === slug && post.type === "personal"
-  );
+    const blog = blogs.find(
+        post => post.slug === slug && post.type === 'personal'
+    )
 
-  if (!blog) {
-    notFound();
-  }
+    if (!blog) {
+        notFound()
+    }
 
-  return (
-    <>
-      <PageHero
-        title={blog.name}
-        description={blog.description || ""}
-        imageUrl={blog.media?.url}
-      />
+    return (
+        <>
+            <PageHero
+                description={blog.description || ''}
+                imageUrl={blog.media.url}
+                title={blog.name}
+            />
 
-      <div className="container mx-auto py-16">
-        <div className="max-w-4xl mx-auto">
-          {/* Blog Header */}
-          <div className="mb-12">
-            <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
-              <span>{blog.authors?.join(", ")}</span>
-              {blog.date && (
-                <>
-                  <span>•</span>
-                  <span>
-                    {new Date(blog.date).toLocaleString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                </>
-              )}
+            <div className="container mx-auto py-16">
+                <div className="max-w-4xl mx-auto">
+                    <div className="mb-12">
+                        <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
+                            <span>{blog.authors.join(', ')}</span>
+                            {blog.date && (
+                                <>
+                                    <span>•</span>
+                                    <span>
+                                        {new Date(blog.date).toLocaleString(
+                                            'en-US',
+                                            {
+                                                day: 'numeric',
+                                                month: 'long',
+                                                year: 'numeric',
+                                            }
+                                        )}
+                                    </span>
+                                </>
+                            )}
+                        </div>
+                    </div>
+
+                    {blog.contentHtml && (
+                        <div className="prose prose-lg max-w-none">
+                            <RichText html={blog.contentHtml} />
+                        </div>
+                    )}
+
+                    <div className="mt-16 pt-8 border-t border-gray-200">
+                        <Link
+                            className="inline-flex items-center gap-2 text-hover font-semibold hover:underline"
+                            href="/opinions">
+                            <ArrowLeft aria-hidden className="w-4 h-4" />
+                            Back to Blog
+                        </Link>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          {/* Blog Content */}
-          {blog.contentHtml && (
-            <div className="prose prose-lg max-w-none">
-              <RichText
-                html={blog.contentHtml}
-              />
-            </div>
-          )}
-
-          {/* Back to Blog */}
-          <div className="mt-16 pt-8 border-t border-gray-200">
-            <Link
-              href="/opinions"
-              className="inline-flex items-center gap-2 text-hover font-semibold hover:underline"
-            >
-              <ArrowLeft className="w-4 h-4" aria-hidden />
-              Back to Blog
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    )
 }
 
-export default BlogDetailPage;
+export default BlogDetailPage

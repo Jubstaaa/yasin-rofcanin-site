@@ -1,78 +1,85 @@
-import ContentIcon from "@/app/_components/content-icon";
-import { profile, socials } from "@/lib/content";
-import React from "react";
-import Link from "next/link";
-import { NAV_LINKS } from "./nav-links";
+import Link from 'next/link'
+import React from 'react'
+
+import ContentIcon from '@/app/_components/content-icon'
+import { profile, socials } from '@/lib/content'
+
+import { NAV_LINKS } from './nav-links'
 
 function Footer() {
-  const user = profile;
+    const user = profile
 
+    return (
+        <>
+            <footer className="w-full flex items-center justify-center shadow-sm bg-gray-50 p-6 md:p-8 lg:p-12 mt-6 md:mt-8 lg:mt-12 relative pt-12 md:pt-16 lg:pt-24">
+                <div className="container mx-auto flex flex-col items-center gap-4 md:gap-6 lg:gap-8">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest uppercase text-primary mb-3 md:mb-4 lg:mb-6 text-center">
+                        {user.firstName} {user.lastName}
+                    </h2>
+                    <nav
+                        aria-label="Footer"
+                        className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-12">
+                        {NAV_LINKS.map(menu => (
+                            <Link
+                                className="text-sm md:text-base lg:text-lg font-medium text-primary hover:text-hover transition-all duration-300 text-center whitespace-nowrap"
+                                href={menu.href}
+                                key={menu.href}
+                                rel={
+                                    menu.external
+                                        ? 'noopener noreferrer'
+                                        : undefined
+                                }
+                                target={menu.external ? '_blank' : undefined}>
+                                {menu.name}
+                            </Link>
+                        ))}
+                    </nav>
+                    <div className="flex flex-row flex-wrap items-center justify-center gap-4 md:gap-5 lg:gap-6 mt-2 md:mt-3 lg:mt-4">
+                        {socials.map(s => (
+                            <Link
+                                aria-label={s.name}
+                                className="hover:text-hover"
+                                href={s.link}
+                                key={s.id}
+                                rel="noopener noreferrer"
+                                target="_blank">
+                                <ContentIcon
+                                    className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                                    name={s.icon}
+                                />
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </footer>
 
-  return (
-    <>
-      <footer className="w-full flex items-center justify-center shadow-sm bg-gray-50 p-6 md:p-8 lg:p-12 mt-6 md:mt-8 lg:mt-12 relative pt-12 md:pt-16 lg:pt-24">
-        <div className="container mx-auto flex flex-col items-center gap-4 md:gap-6 lg:gap-8">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest uppercase text-primary mb-3 md:mb-4 lg:mb-6 text-center">
-            {user?.firstName} {user?.lastName}
-          </h2>
-          <nav
-            aria-label="Footer"
-            className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-12"
-          >
-            {NAV_LINKS.map((menu) => (
-              <Link
-                key={menu.href}
-                href={menu.href}
-                className="text-sm md:text-base lg:text-lg font-medium text-primary hover:text-hover transition-all duration-300 text-center whitespace-nowrap"
-                target={menu.external ? "_blank" : undefined}
-                rel={menu.external ? "noopener noreferrer" : undefined}
-              >
-                {menu.name}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex flex-row flex-wrap items-center justify-center gap-4 md:gap-5 lg:gap-6 mt-2 md:mt-3 lg:mt-4">
-            {socials.map((s) => (
-              <Link
-                href={s.link}
-                key={s.id}
-                className="hover:text-hover"
-                target="_blank"
-                aria-label={s.name}
-                rel="noopener noreferrer"
-              >
-                <ContentIcon name={s.icon} className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </footer>
-
-      <div className="w-full flex flex-col items-center bg-[#282828]">
-        <div className="w-full flex justify-center items-center py-3 md:py-4 px-4">
-          <span className="text-white text-xs md:text-sm font-medium text-center flex flex-col md:flex-row items-center gap-1 md:gap-2">
-            <span>© {new Date().getFullYear()} Yasin Rofcanin. All rights reserved.</span>
-            <span className="hidden md:inline mx-2 text-[#AAAAAA] font-normal select-none">
-              |
-            </span>
-            <span className="text-xs text-[#AAAAAA] text-center flex items-center gap-1">
-              Designed and developed by
-              <a
-                href="https://ilkerbalcilar.com/"
-                target="_blank"
-                rel="noopener noreferrer me"
-                referrerPolicy="origin"
-                className="underline hover:text-hover transition-all px-0.5"
-                aria-label="İlker Balcilar's Website"
-              >
-                İlker Balcilar
-              </a>
-            </span>
-          </span>
-        </div>
-      </div>
-    </>
-  );
+            <div className="w-full flex flex-col items-center bg-[#282828]">
+                <div className="w-full flex justify-center items-center py-3 md:py-4 px-4">
+                    <span className="text-white text-xs md:text-sm font-medium text-center flex flex-col md:flex-row items-center gap-1 md:gap-2">
+                        <span>
+                            © {new Date().getFullYear()} Yasin Rofcanin. All
+                            rights reserved.
+                        </span>
+                        <span className="hidden md:inline mx-2 text-[#AAAAAA] font-normal select-none">
+                            |
+                        </span>
+                        <span className="text-xs text-[#AAAAAA] text-center flex items-center gap-1">
+                            Designed and developed by
+                            <a
+                                aria-label="İlker Balcilar's Website"
+                                className="underline hover:text-hover transition-all px-0.5"
+                                href="https://ilkerbalcilar.com/"
+                                referrerPolicy="origin"
+                                rel="noopener noreferrer me"
+                                target="_blank">
+                                İlker Balcilar
+                            </a>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </>
+    )
 }
 
-export default Footer;
+export default Footer

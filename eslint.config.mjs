@@ -1,9 +1,4 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import { next } from '@jubstaaa/config/eslint/next'
+import { defineConfig } from 'eslint/config'
 
-export default defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  globalIgnores([".next/**", "out/**", "next-env.d.ts"]),
-]);
+export default defineConfig([...next({ tsconfigRootDir: import.meta.dirname })])

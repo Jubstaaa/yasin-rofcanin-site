@@ -1,61 +1,66 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import type React from 'react'
+
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from 'react'
 
 interface AccordionItemProps {
-  title: React.ReactNode;
-  children: React.ReactNode;
-  defaultOpen?: boolean;
-}
-
-export function AccordionItem({
-  title,
-  children,
-  defaultOpen = false,
-}: AccordionItemProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-
-  return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden">
-      <button
-        type="button"
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-6 py-4 flex items-center justify-between transition-colors ${
-          isOpen ? "bg-gray-50" : "bg-white hover:bg-gray-50"
-        }`}
-      >
-        <div className="text-lg font-medium">{title}</div>
-        {isOpen ? (
-          <ChevronUp aria-hidden className="w-6 h-6 text-gray-500" />
-        ) : (
-          <ChevronDown aria-hidden className="w-6 h-6 text-gray-500" />
-        )}
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 py-4 bg-gray-50">{children}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+    children: React.ReactNode
+    defaultOpen?: boolean
+    title: React.ReactNode
 }
 
 interface AccordionProps {
-  children: React.ReactNode;
-  className?: string;
+    children: React.ReactNode
+    className?: string
 }
 
-export function Accordion({ children, className = "" }: AccordionProps) {
-  return <div className={`space-y-4 ${className}`}>{children}</div>;
+export function Accordion({ children, className = '' }: AccordionProps) {
+    return <div className={`space-y-4 ${className}`}>{children}</div>
+}
+
+export function AccordionItem({
+    children,
+    defaultOpen = false,
+    title,
+}: AccordionItemProps) {
+    const [isOpen, setIsOpen] = useState(defaultOpen)
+
+    return (
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+            <button
+                aria-expanded={isOpen}
+                className={`w-full px-6 py-4 flex items-center justify-between transition-colors ${
+                    isOpen ? 'bg-gray-50' : 'bg-white hover:bg-gray-50'
+                }`}
+                onClick={() => {
+                    setIsOpen(!isOpen)
+                }}
+                type="button">
+                <div className="text-lg font-medium">{title}</div>
+                {isOpen ? (
+                    <ChevronUp aria-hidden className="w-6 h-6 text-gray-500" />
+                ) : (
+                    <ChevronDown
+                        aria-hidden
+                        className="w-6 h-6 text-gray-500"
+                    />
+                )}
+            </button>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        animate={{ height: 'auto', opacity: 1 }}
+                        className="overflow-hidden"
+                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}>
+                        <div className="px-6 py-4 bg-gray-50">{children}</div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    )
 }

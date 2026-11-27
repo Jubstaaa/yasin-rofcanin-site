@@ -1,62 +1,62 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-divider: #e5e5e5;
-  --color-primary: #212121;
-  --color-secondary: #616161;
-  /* #1c8c52 measured 4.26:1 on white; this clears 4.5:1 for small text. */
-  --color-hover: #167a46;
-  --font-primary: var(--font-raleway);
+    --color-divider: #e5e5e5;
+    --color-primary: #212121;
+    --color-secondary: #616161;
+    /* #1c8c52 measured 4.26:1 on white; this clears 4.5:1 for small text. */
+    --color-hover: #167a46;
+    --font-primary: var(--font-raleway);
 }
 
 /* Centred, full width below 1200px, capped at 1200px above it. */
 @utility container {
-  margin-inline: auto;
-  @media (width >= 40rem) {
-    max-width: none;
-  }
-  @media (width >= 1200px) {
-    max-width: 1200px;
-  }
+    margin-inline: auto;
+    @media (width >= 40rem) {
+        max-width: none;
+    }
+    @media (width >= 1200px) {
+        max-width: 1200px;
+    }
 }
 
 :root {
-  --swiper-theme-color: #1c8c52;
-  --swiper-pagination-color: #1c8c52;
-  --swiper-pagination-bullet-inactive-opacity: 0.4;
+    --swiper-theme-color: #1c8c52;
+    --swiper-pagination-color: #1c8c52;
+    --swiper-pagination-bullet-inactive-opacity: 0.4;
 }
 
 html {
-  @apply scroll-smooth;
+    @apply scroll-smooth;
 }
 
 body {
-  @apply font-primary bg-white text-primary;
+    @apply font-primary bg-white text-primary;
 }
 
 .font-rancho {
-  font-family: var(--font-rancho);
+    font-family: var(--font-rancho);
 }
 
 a {
-  @apply no-underline;
+    @apply no-underline;
 }
 
 /* Rich Text Image Styles */
 .prose img {
-  @apply max-w-full h-auto rounded-lg shadow-md mx-auto my-6;
+    @apply max-w-full h-auto rounded-lg shadow-md mx-auto my-6;
 }
 
 .prose figure {
-  @apply my-6;
+    @apply my-6;
 }
 
 .prose figure img {
-  @apply w-full h-auto;
+    @apply w-full h-auto;
 }
 
 .prose figure figcaption {
-  @apply text-center text-sm text-gray-600 mt-2;
+    @apply text-center text-sm text-gray-600 mt-2;
 }
