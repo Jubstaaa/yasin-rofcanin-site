@@ -1,19 +1,19 @@
 export interface NavLink {
-  name: string;
-  href: string;
-  external?: boolean;
+    external?: boolean
+    href: string
+    name: string
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { name: "Homepage", href: "/" },
-  { name: "About Me", href: "/about-me" },
-  { name: "Keynote Talks", href: "/keynote-talks" },
-  {
-    name: "Future of Work",
-    href: "https://www.bath.ac.uk/research-centres/future-of-work-fow-research-centre/",
-    external: true,
-  },
-  { name: "Publications", href: "/publications" },
-  { name: "Opinions", href: "/opinions" },
-  { name: "Contact", href: "/contact" },
-];
+    { href: '/', name: 'Homepage' },
+    { href: '/about-me', name: 'About Me' },
+    { href: '/keynote-talks', name: 'Keynote Talks' },
+    {
+        external: true,
+        href: 'https://www.bath.ac.uk/research-centres/future-of-work-fow-research-centre/',
+        name: 'Future of Work',
+    },
+    { href: '/publications', name: 'Publications' },
+    { href: '/opinions', name: 'Opinions' },
+    { href: '/contact', name: 'Contact' },
+]

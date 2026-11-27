@@ -1,75 +1,73 @@
-"use client";
-import { motion } from "framer-motion";
+'use client'
+import { motion, stagger } from 'framer-motion'
 
 interface ImageSliderProps {
-  user?: {
-    firstName?: string;
-    lastName?: string;
-    titles?: string[];
-  };
+    user?: {
+        firstName?: string
+        lastName?: string
+        titles?: string[]
+    }
 }
 
 export default function ImageSlider({ user }: ImageSliderProps) {
-  return (
-    <div className="w-full h-auto aspect-video relative">
-      <video
-        src="https://yasinrofcanin.fra1.cdn.digitaloceanspaces.com/beta/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-full h-full object-cover"
-      />
-      {user && (
-        <motion.div
-          className="flex flex-col items-start justify-center gap-2 md:gap-3 lg:gap-4 absolute left-0 top-[50%] md:top-[40%] -translate-y-1/2 w-auto h-auto p-4 md:p-6 lg:p-10 bg-white z-10 opacity-90 space-y-2 md:space-y-3 lg:space-y-4"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.15 } },
-          }}
-        >
-          <motion.h1
-            className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl pl-4 md:pl-6 lg:pl-10 w-auto max-w-[90vw] md:max-w-none md:w-[calc(100%+20rem)] lg:w-[calc(100%+40rem)] z-10 font-rancho"
-            initial={{ opacity: 0, y: -40, x: -40 }}
-            animate={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
-            {user.firstName} {user.lastName}
-          </motion.h1>
-          <motion.hr
-            className="w-24 md:w-32 lg:w-44 text-hover"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          />
-          {user.titles && (
-            <motion.div
-              className="pl-4 md:pl-6 lg:pl-10 w-auto max-w-[90vw] md:max-w-none md:w-[calc(100%+20rem)] lg:w-[calc(100%+40rem)] relative z-10"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              {user.titles.map((title, i) => (
-                <motion.p
-                  className="text-xs md:text-sm lg:text-base text-secondary leading-relaxed"
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.2 + i * 0.1,
-                    ease: "easeOut",
-                  }}
-                >
-                  {title}
-                </motion.p>
-              ))}
-            </motion.div>
-          )}
-        </motion.div>
-      )}
-    </div>
-  );
+    return (
+        <div className="w-full h-auto aspect-video relative">
+            <video
+                autoPlay
+                className="w-full h-full object-cover"
+                loop
+                muted
+                playsInline
+                src="https://yasinrofcanin.fra1.cdn.digitaloceanspaces.com/beta/9a4cea9e-aa18-477b-b2a4-0200e7f6ea00.webm"
+            />
+            {user && (
+                <motion.div
+                    animate="visible"
+                    className="flex flex-col items-start justify-center gap-2 md:gap-3 lg:gap-4 absolute left-0 top-[50%] md:top-[40%] -translate-y-1/2 w-auto h-auto p-4 md:p-6 lg:p-10 bg-white z-10 opacity-90 space-y-2 md:space-y-3 lg:space-y-4"
+                    initial="hidden"
+                    variants={{
+                        hidden: {},
+                        visible: {
+                            transition: { delayChildren: stagger(0.15) },
+                        },
+                    }}>
+                    <motion.h1
+                        animate={{ opacity: 1, x: 0, y: 0 }}
+                        className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl pl-4 md:pl-6 lg:pl-10 w-auto max-w-[90vw] md:max-w-none md:w-[calc(100%+20rem)] lg:w-[calc(100%+40rem)] z-10 font-rancho"
+                        initial={{ opacity: 0, x: -40, y: -40 }}
+                        transition={{ duration: 0.7, ease: 'easeOut' }}>
+                        {user.firstName} {user.lastName}
+                    </motion.h1>
+                    <motion.hr
+                        animate={{ opacity: 1, x: 0 }}
+                        className="w-24 md:w-32 lg:w-44 text-hover"
+                        initial={{ opacity: 0, x: -40 }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
+                    />
+                    {user.titles && (
+                        <motion.div
+                            animate={{ opacity: 1, y: 0 }}
+                            className="pl-4 md:pl-6 lg:pl-10 w-auto max-w-[90vw] md:max-w-none md:w-[calc(100%+20rem)] lg:w-[calc(100%+40rem)] relative z-10"
+                            initial={{ opacity: 0, y: 30 }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}>
+                            {user.titles.map((title, i) => (
+                                <motion.p
+                                    animate={{ opacity: 1, x: 0 }}
+                                    className="text-xs md:text-sm lg:text-base text-secondary leading-relaxed"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    key={i}
+                                    transition={{
+                                        delay: 0.2 + i * 0.1,
+                                        duration: 0.5,
+                                        ease: 'easeOut',
+                                    }}>
+                                    {title}
+                                </motion.p>
+                            ))}
+                        </motion.div>
+                    )}
+                </motion.div>
+            )}
+        </div>
+    )
 }
