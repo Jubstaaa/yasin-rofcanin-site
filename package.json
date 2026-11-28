@@ -28,7 +28,7 @@
         "@iconify-json/carbon": "^1.2.30",
         "@iconify-json/mdi": "^1.2.3",
         "@iconify/utils": "^3.1.7",
-        "@jubstaaa/config": "github:Jubstaaa/configs#80d67f7e1374bd492a10ffdc5409d8ca51cdc723",
+        "@jubstaa/config": "^1.6.0",
         "@tailwindcss/postcss": "^4.3.5",
         "@tailwindcss/typography": "^0.5.20",
         "@types/node": "^26.6.6",
